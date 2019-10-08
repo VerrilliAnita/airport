@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+ [y] hybris Platform
+
+ Copyright (c) 2018 SAP SE or an SAP affiliate company.  All rights reserved.
+
+ This software is the confidential and proprietary information of SAP
+ ("Confidential Information"). You shall not disclose such Confidential
+ Information and shall use it only in accordance with the terms of the
+ license agreement you entered into with SAP.
+-->
+<config xmlns="http://www.hybris.com/cockpit/config"
+	xmlns:na="http://www.hybris.com/cockpitng/config/notifications"
+	xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+
+
+	<context component="explorer-tree" merge-by="module">
+		<n:explorer-tree
+			xmlns:n="http://www.hybris.com/cockpitng/config/explorertree">
+			<n:navigation-node id="type_tree_airport">
+				<n:type-node id="type_tree_route" code="Route" />
+				<n:type-node id="type_tree_flight" code="Flight" />
+				<n:type-node id="type_tree_airport" code="Airport" />
+				<n:type-node id="type_tree_plane" code="Plane" />
+				<n:type-node id="type_tree_ticket" code="AirportTicket" />
+				<n:type-node id="type_tree_passenger" code="Passenger" />	
+			</n:navigation-node>
+		</n:explorer-tree>
+	</context>
+	
+	<context type = "Airport" component= "base" merge-by="type" parent = "GenericItem">
+		<y:base >
+			<y:labels>
+				<y:label>(name!=null?name: '')</y:label>
+			</y:labels>
+		</y:base>
+	</context>
+	
+	<context type="Airport" component="listview">
+		<list:list-view
+			xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+			<list:column qualifier="codeAirport" />
+			<list:column qualifier="name" />
+			<list:column qualifier="city" />
+			<list:column qualifier="country" />
+				
+	</list:list-view>
+	</context>
+	
+	<context type="Flight" component="listview">
+		<list:list-view
+			xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+			<list:column qualifier="codeFlight" />
+			<list:column qualifier="airportDep" />
+			<list:column qualifier="airportArr" />
+	</list:list-view>
+	</context>
+	
+	<context type="Plane" component="listview">
+		<list:list-view
+			xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+			<list:column qualifier="codePlane" />
+			<list:column qualifier="type" />
+			<list:column qualifier="numOfSits" />
+			<list:column qualifier="goods" />	
+	</list:list-view>
+	</context>
+	
+	<context type="Route" component="listview">
+		<list:list-view
+			xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+			<list:column qualifier="codeRoute" />
+			<list:column qualifier="dateRouteDep" />
+			<list:column qualifier="dateRouteArr" />
+	</list:list-view>
+	</context>
+	
+	<context type="Passenger" component="listview">
+		<list:list-view
+			xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+			<list:column qualifier="codeFiscal" />
+			<list:column qualifier="birthday" />
+			<list:column qualifier="age" />
+	</list:list-view>
+	</context>
+	
+	<context type="AirportTicket" component="listview">
+		<list:list-view
+			xmlns:list="http://www.hybris.com/cockpitng/component/listView">
+			<list:column qualifier="codeAirportTicket" />
+			<list:column qualifier="passenger" />
+			<list:column qualifier="price" />
+			<list:column qualifier="seat" />
+	</list:list-view>
+	</context>
+
+	
+
+</config>
