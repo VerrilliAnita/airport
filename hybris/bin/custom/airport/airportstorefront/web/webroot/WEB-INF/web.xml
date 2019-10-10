@@ -46,7 +46,7 @@
 	</filter>
 
 	<!-- 	Web Resource Optimizer for Java Wro4j -->
-	<filter>
+	<!--<filter>
 	    <filter-name>WebResourceOptimizer</filter-name>
 	    <filter-class>ro.isdc.wro.http.WroFilter</filter-class>
 	</filter>
@@ -54,7 +54,7 @@
 	<filter-mapping>
 	    <filter-name>WebResourceOptimizer</filter-name>
 	    <url-pattern>/wro/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping>-->
 	<!-- resource filter -->
 	<filter>
 		<description>
