@@ -18,4 +18,6 @@ public interface AirportService
 
 	public List<AirportModel> getAllAirport();
 
+	public AirportModel getAirportsForCode(String code);
+
 }

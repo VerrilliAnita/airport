@@ -20,4 +20,6 @@ public interface AirportDao extends GenericDao<AirportModel> {
 
 	public List<AirportModel> findAllAirport();
 
+	public AirportModel findAirportByCode(String codeAirport);
+
 }

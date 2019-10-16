@@ -11,6 +11,7 @@ import java.util.List;
 
 import it.uiip.airport.core.dao.PlaneDao;
 import it.uiip.airport.core.model.PlaneModel;
+import org.apache.log4j.Logger;
 
 /**
  * @author soprasteria
@@ -18,13 +19,16 @@ import it.uiip.airport.core.model.PlaneModel;
  */
 public class DefaultPlaneDao extends DefaultGenericDao<PlaneModel> implements PlaneDao {
 
+	private static final Logger LOG = Logger.getLogger(DefaultPlaneDao.class);
+
 	public DefaultPlaneDao(final String typecode) {
 		super(typecode);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public List<PlaneModel> findPlanesByCity(final String city) {
+		LOG.info("Invoke method findPlanesByCity in DefaultPlaneDao");
+
 		final StringBuilder queryStr= new StringBuilder();
 		queryStr.append("SELECT * FROM {Plane as p JOIN Flight AS f");
 		queryStr.append("ON {f.plane} = {p.PK} JOIN Route AS r");
@@ -37,14 +41,11 @@ public class DefaultPlaneDao extends DefaultGenericDao<PlaneModel> implements Pl
 		return result.getResult();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see it.uiip.airport.core.dao.PlaneDao#findAllPlanes()
-	 */
+
 	@Override
-	public List<PlaneModel> findAllPlanes()
-	{
+	public List<PlaneModel> findAllPlanes() {
+		LOG.info("Invoke method findAllPlanes in DefaultPlaneDao");
+
 		final StringBuilder queryStr = new StringBuilder();
 		queryStr.append("SELECT * FROM {Plane as p}}");
 		final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
