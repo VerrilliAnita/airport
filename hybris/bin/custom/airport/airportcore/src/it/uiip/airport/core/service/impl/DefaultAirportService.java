@@ -23,46 +23,32 @@ public class DefaultAirportService implements AirportService
 	private AirportDao airportDao;
 
 
+	public AirportDao getAirportDao() {
+
+		return airportDao;
+	}
+
+	@Required
+	public void setAirportDao(final AirportDao airportDao) {
+		this.airportDao = airportDao;
+	}
+
 	@Override
-	public List<AirportModel> getAirportsForCity(final String city)
-	{
-		// XXX Auto-generated method stub
-		LOG.info("Invoke method findAirportsByCity in DefaultAirportService");
+	public List<AirportModel> getAirportsForCity(final String city) {
+		LOG.info("Invoke method getAirportsForCity in DefaultAirportService");
 		return airportDao.findAirportsByCity(city);
 	}
 
 	@Override
-	public AirportModel getAirportForCode(String code) {
-		return airportDao.findAirportByCode(code);
-	}
-
-
-	/**
-	 * @return the airportDao
-	 */
-	public AirportDao getAirportDao()
-	{
-		return airportDao;
-	}
-
-
-	@Required
-	public void setAirportDao(final AirportDao airportDao)
-	{
-		this.airportDao = airportDao;
-	}
-
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see it.uiip.airport.core.service.AirportService#getAllAirport()
-	 */
-	@Override
-	public List<AirportModel> getAllAirport()
-	{
-		LOG.info("Invoke method findAllAirport in DefaultAirportService");
+	public List<AirportModel> getAllAirport() {
+		LOG.info("Invoke method getAllAirport in DefaultAirportService");
 		return airportDao.findAllAirport();
+	}
+
+	@Override
+	public AirportModel getAirportsForCode(String code) {
+		LOG.info("Invoke method getAirportsForCode in DefaultAirportService");
+		return airportDao.findAirportByCode(code);
 	}
 
 

@@ -8,6 +8,6 @@ public interface PlaneService {
 
 	 public List<PlaneModel> getPlanesForCity(String city);
 
-	public List<PlaneModel> getAllPlanes();
+	 public List<PlaneModel> getAllPlanes();
 
 }

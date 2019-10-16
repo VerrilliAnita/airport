@@ -35,9 +35,9 @@ public class DefaultAirportRouteFacade implements AirportRouteFacade
 
 
 	@Override
-	public List<AirportRouteData> getRoutesForCode(final String codeRoute)
+	public AirportRouteData getRouteForCode(final String codeRoute)
 	{
-		return airportRouteConverter.convertAll(airportRouteService.getRoutesForCode(codeRoute));
+		return airportRouteConverter.convert(airportRouteService.getRouteForCode(codeRoute));
 	}
 
 	public AirportRouteService getAirportRouteService()

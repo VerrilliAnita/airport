@@ -1,14 +1,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="ISO-8859-1">
-
+    <meta charset="UTF-8">
+    <title>Route Commander</title>
+</head>
 <body>
-    <h1>Commander: ${commander} month:${month}</h1>
+    <h1>Route for commander: ${commander}</h1>
 	<ul>
 		<c:forEach var="route" items="${routes}">
-			<h2>Route: ${route.codeRoute}</h2>
+			<li>${route.codeRoute}</li>
 		</c:forEach>
 	</ul>
 </body>

@@ -12,9 +12,20 @@ import it.uiip.airport.core.model.PlaneModel;
 import it.uiip.airport.core.service.PlaneService;
 
 public class DefaultPlaneService implements PlaneService {
+
 	private static final Logger LOG = Logger.getLogger(DefaultPlaneService.class);
+
 	@Resource
 	private PlaneDao planeDao;
+
+	public PlaneDao getPlaneDao() {
+		return planeDao;
+	}
+
+	@Required
+	public void setPlaneDao(final PlaneDao planeDao) {
+		this.planeDao = planeDao;
+	}
 
 	@Override
 	public List<PlaneModel> getPlanesForCity(final String city) {
@@ -22,29 +33,9 @@ public class DefaultPlaneService implements PlaneService {
 		return planeDao.findPlanesByCity(city);
 	}
 
-	/**
-	 * @return the planeDao
-	 */
-	public PlaneDao getPlaneDao()
-	{
-		return planeDao;
-	}
-
-	@Required
-	public void setPlaneDao(final PlaneDao planeDao)
-	{
-		this.planeDao = planeDao;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see it.uiip.airport.core.service.PlaneService#getAllPlanes()
-	 */
 	@Override
-	public List<PlaneModel> getAllPlanes()
-	{
-		LOG.info("Invoke method findAllPlanes in DefaultPlaneService");
+	public List<PlaneModel> getAllPlanes() {
+		LOG.info("Invoke method getAllPlanes in DefaultPlaneService");
 		return planeDao.findAllPlanes();
 	}
 

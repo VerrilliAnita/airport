@@ -40,23 +40,18 @@ public class AirportController extends AbstractPageController
 
 	private static final Logger LOG = Logger.getLogger(AirportController.class);
 
-
-
 	@RequestMapping(value = "/search/{city}", method = RequestMethod.GET)
 	public String searchAirportByCity(@PathVariable("city")
 	final String city, final Model model, final HttpServletResponse response)
 	{
-		final List<AirportData> airports = airportFacade.getAirportsforCity(city);
+		final List<AirportData> airports = airportFacade.getAirportsForCity(city);
 		if (airports == null)
 		{
 			LOG.info("Lists of Airport null");
 		}
 		model.addAttribute("airports", airports);
 		return ControllerConstants.Views.Pages.Airport.AirportSearchPage;
-
 	}
-
-
 
 	@RequestMapping(value = "/infoFlight/{codeRoute}", method = RequestMethod.GET)
 
@@ -64,12 +59,12 @@ public class AirportController extends AbstractPageController
 
 	final String codeRoute, final Model model, final HttpServletResponse response)
 	{
-		final List<AirportRouteData> routes = routeFacade.getRoutesForCode(codeRoute);
-		if (routes == null)
+		final AirportRouteData route = routeFacade.getRouteForCode(codeRoute);
+		if (route == null)
 		{
-			LOG.info("Lists of routes null");
+			LOG.info("Route null");
 		}
-		model.addAttribute("route", routes.get(0));
+		model.addAttribute("route", route);
 		return ControllerConstants.Views.Pages.Airport.AirportInfoPage;
 
 	}
@@ -77,11 +72,13 @@ public class AirportController extends AbstractPageController
 	@RequestMapping(value = "/searchRoute/cabinCrew/{airportDep}", method = RequestMethod.GET)
 
 	public String searchCabinCrewByAirportDep(@PathVariable("airportDep")
-
-	final String airportDep, final Model model, final HttpServletResponse response)
+												  final String airportDep, final Model model,
+											  final HttpServletResponse response)
 	{
 		final List<AirportRouteData> routes = routeFacade.getRoutesForAirportDep(airportDep);
-		final AirportData airportDeparture = airportFacade.getAirportForCode(airportDep);
+
+		final AirportData airportData = airportFacade.getAirportsForCode(airportDep);
+
 
 		if (routes == null)
 		{
@@ -95,7 +92,9 @@ public class AirportController extends AbstractPageController
 			cabinCrewes.put(route.getCodeRoute(),crew.getCabinCrew());
 			model.addAttribute("airportArrival",airportArrival);
 		}
-		model.addAttribute("airportDeparture", airportDeparture);
+
+		model.addAttribute("airportData", airportData);
+
 		model.addAttribute("cabinCrewes", cabinCrewes);
 		return ControllerConstants.Views.Pages.Airport.CabinCrewesPage;
 

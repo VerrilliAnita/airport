@@ -7,6 +7,8 @@ import de.hybris.platform.servicelayer.dto.converter.Converter;
 
 import java.util.List;
 
+import it.uiip.airport.facades.populators.AirportPopulator;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
 
 import it.uiip.airport.core.model.AirportModel;
@@ -20,62 +22,49 @@ import it.uiip.airport.facades.data.AirportData;
  */
 public class DefaultAirportFacade implements AirportFacade
 {
+	private static final Logger LOG = Logger.getLogger(DefaultAirportFacade.class);
+
 	private AirportService airportService;
 
 	private Converter<AirportModel, AirportData> airportConverter;
 
-	/* (non-Javadoc)
-	 * @see it.uiip.airport.facades.AirportFacade#getAllAirport()
-	 */
-	@Override
-	public List<AirportData> getAllAirport()
-	{
-		return airportConverter.convertAll(airportService.getAllAirport());
-	}
 
-	@Override
-	public AirportData getAirportForCode(String code) {
-		return airportConverter.convert(airportService.getAirportForCode(code));
-	}
+	public AirportService getAirportService() {
 
-
-	public AirportService getAirportService()
-	{
 		return airportService;
 	}
 
 	@Required
-	public void setAirportService(final AirportService airportService)
-	{
+	public void setAirportService(final AirportService airportService) {
 		this.airportService = airportService;
 	}
 
-
-
-	public Converter<AirportModel, AirportData> getAirportConverter()
-	{
+	public Converter<AirportModel, AirportData> getAirportConverter() {
 		return airportConverter;
 	}
 
-
 	@Required
-	public void setAirportConverter(final Converter<AirportModel, AirportData> airportConverter)
-	{
+	public void setAirportConverter(final Converter<AirportModel, AirportData> airportConverter) {
 		this.airportConverter = airportConverter;
 	}
 
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see it.uiip.airport.facades.AirportFacade#getAirportforCity(java.lang.String)
-	 */
 	@Override
-	public List<AirportData> getAirportsforCity(final String city)
-	{
+	public List<AirportData> getAllAirport() {
+		LOG.info("Invoke method getAllAirport() in DefaultAirportFacade");
+		return airportConverter.convertAll(airportService.getAllAirport());
+	}
+
+	@Override
+	public List<AirportData> getAirportsForCity(final String city) {
+		LOG.info("Invoke method getAirportsForCity in DefaultAirportFacade");
 		return airportConverter.convertAll(airportService.getAirportsForCity(city));
 	}
 
+	@Override
+	public AirportData getAirportsForCode(String code) {
+		LOG.info("Invoke method getAirportsforCity in DefaultAirportFacade");
+		return airportConverter.convert(airportService.getAirportsForCode(code));
+	}
 
 
 }

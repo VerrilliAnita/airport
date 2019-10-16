@@ -6,11 +6,10 @@ package it.uiip.airport.facades.populators;
 import de.hybris.platform.converters.Populator;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
-
 import it.uiip.airport.core.model.CrewModel;
 import it.uiip.airport.facades.data.CrewData;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Required;
-
 import it.uiip.airport.core.model.AirportTicketModel;
 import it.uiip.airport.core.model.FlightModel;
 import it.uiip.airport.core.model.RouteModel;
@@ -27,6 +26,8 @@ import it.uiip.airport.facades.data.FlightData;
  */
 public class AirportRoutePopulator implements Populator<RouteModel, AirportRouteData>
 {
+	private static final Logger LOG = Logger.getLogger(AirportRoutePopulator.class);
+
 	private Converter<FlightModel, FlightData> flightConverter;
 	private Converter<AirportTicketModel, AirportTicketData> airportTicketConverter;
 	private Converter<CrewModel, CrewData> crewConverter;
@@ -35,12 +36,32 @@ public class AirportRoutePopulator implements Populator<RouteModel, AirportRoute
 	@Override
 	public void populate(final RouteModel source, final AirportRouteData target) throws ConversionException
 	{
-		target.setCodeRoute(source.getCodeRoute());
-		target.setFlight(flightConverter.convert(source.getFlight()));
-		target.setDateRouteDep(source.getDateRouteDep());
-		target.setDateRouteArr(source.getDateRouteArr());
-		target.setCrew(crewConverter.convert(source.getCrew()));
-		target.setTickets(airportTicketConverter.convertAll(source.getAirportTickets()));
+
+		LOG.info("Invoke method populate() in AirportRoutePopulator");
+		if(source.getCodeRoute() != null)
+		{
+			target.setCodeRoute(source.getCodeRoute());
+		}
+		if(source.getFlight() != null)
+		{
+			target.setFlight(flightConverter.convert(source.getFlight()));
+		}
+		if(source.getDateRouteDep() != null)
+		{
+			target.setDateRouteDep(source.getDateRouteDep());
+		}
+		if(source.getDateRouteArr() != null)
+		{
+			target.setDateRouteArr(source.getDateRouteArr());
+		}
+		if(source.getAirportTickets() != null)
+		{
+			target.setTickets(airportTicketConverter.convertAll(source.getAirportTickets()));
+		}
+		if(source.getCrew() != null)
+		{
+			target.setCrew(crewConverter.convert(source.getCrew()));
+		}
 
 	}
 

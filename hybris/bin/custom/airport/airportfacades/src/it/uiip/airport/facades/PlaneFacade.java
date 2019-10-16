@@ -14,7 +14,7 @@ import it.uiip.airport.facades.data.PlaneData;
  */
 public interface PlaneFacade
 {
-	public List<PlaneData> getAllPlane();
+	public List<PlaneData> getAllPlanes();
 
 	public List<PlaneData> getPlanesForCity(String city);
 }

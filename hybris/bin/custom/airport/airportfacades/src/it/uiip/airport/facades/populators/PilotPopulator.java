@@ -6,6 +6,7 @@ import it.uiip.airport.core.model.PilotModel;
 import it.uiip.airport.facades.data.PilotData;
 
 public class PilotPopulator implements Populator<PilotModel, PilotData> {
+
     @Override
     public void populate(PilotModel source, PilotData target) throws ConversionException {
         if(source!=null)
@@ -32,5 +33,6 @@ public class PilotPopulator implements Populator<PilotModel, PilotData> {
             }
         }
     }
+
 
 }

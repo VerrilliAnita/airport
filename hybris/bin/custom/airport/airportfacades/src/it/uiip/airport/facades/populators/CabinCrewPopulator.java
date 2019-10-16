@@ -5,12 +5,10 @@ import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 import it.uiip.airport.core.model.CabinCrewModel;
 import it.uiip.airport.facades.data.CabinCrewData;
 
-
 public class CabinCrewPopulator implements Populator<CabinCrewModel, CabinCrewData> {
 
 
     @Override
-
     public void populate(CabinCrewModel source, CabinCrewData target) throws ConversionException {
         if (source!=null)
         {
@@ -35,6 +33,7 @@ public class CabinCrewPopulator implements Populator<CabinCrewModel, CabinCrewDa
                 target.setBirthday(source.getBirthday());
             }
         }
+
     }
 
 
