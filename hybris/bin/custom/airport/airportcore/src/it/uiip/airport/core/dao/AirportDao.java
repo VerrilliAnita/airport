@@ -17,10 +17,7 @@ import it.uiip.airport.core.model.AirportModel;
 public interface AirportDao extends GenericDao<AirportModel> {
 
 	public List<AirportModel> findAirportsByCity(String city);
-
-	public AirportModel findAirportByCode(String code);
 	public List<AirportModel> findAllAirport();
-
 	public AirportModel findAirportByCode(String codeAirport);
 
 }

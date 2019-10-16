@@ -95,6 +95,32 @@
 	<itemtypes>
 
 
+        <!-- Add your item definitions here -->
+        <itemtype code="AirportTicket" generate="true" autocreate="true">
+            <deployment table="airportTicket" typecode="21350"/>
+            <attributes>
+                <attribute qualifier="codeAirportTicket" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                </attribute>
+                <attribute qualifier="statusTicket" type="statusTicketEnum">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                </attribute>
+                <attribute qualifier="passenger" type="Passenger">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                </attribute>
+                <attribute qualifier="price" type="java.lang.Integer">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                </attribute>
+                <attribute qualifier="seat" type="java.lang.String">
+                    <persistence type="property"/>
+                    <modifiers optional="false"/>
+                </attribute>
+            </attributes>
+        </itemtype>
 
     <itemtype code="Airport" generate="true" autocreate="true">
         <deployment table="airport" typecode="21345"/>

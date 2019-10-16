@@ -32,6 +32,8 @@
 
 	<!-- Solr field value providers -->
 
+    <!--INTERCEPTOR-->
+
 	<bean id="removePassengerInterceptor" class="it.uiip.airport.core.interceptor.RemovePassengerInterceptor" >
 		<property name="airportTicketService" ref="airportTicketService" />
 	</bean>
@@ -65,99 +67,124 @@
 		<property name="typeCode" value="AirportTicket"/>
 	</bean>
 
+    <!--JOB-->
+
 	<bean id="updateStatusTicketJob" class="it.uiip.airport.core.job.UpdateStatusTicketJob" parent="abstractJobPerformable">
-		<property name="airportRouteService" ref="airportRouteService"></property>
+		<property name="airportRouteService" ref="airportRouteService"/>
 	</bean>
 
 	<bean id="BestCabinCrewJob" class="it.uiip.airport.core.job.BestCabinCrewJob" parent="abstractJobPerformable">
-		<property name="cabinCrewService" ref="cabinCrewService"></property>
+		<property name="cabinCrewService" ref="cabinCrewService"/>
 	</bean>
 
-	<bean id="agePassengerHandler" class="it.uiip.airport.core.handler.AgePassengerHandler"></bean>
-	<bean id="agePilotHandler" class="it.uiip.airport.core.handler.AgePilotHandler"></bean>
-	<bean id="ageCabinCrewHandler" class="it.uiip.airport.core.handler.AgeCabinCrewHandler"></bean>
+    <!--HANDLER-->
+	<bean id="agePassengerHandler" class="it.uiip.airport.core.handler.AgePassengerHandler"/>
+	<bean id="agePilotHandler" class="it.uiip.airport.core.handler.AgePilotHandler"/>
+	<bean id="ageCabinCrewHandler" class="it.uiip.airport.core.handler.AgeCabinCrewHandler"/>
 
+    <!--DAO-->
 	<alias name="defaultAirportDao" alias="airportDao"/>
 	<bean id="defaultAirportDao" class="it.uiip.airport.core.dao.impl.DefaultAirportDao">
 		<constructor-arg value="#{T(it.uiip.airport.core.model.AirportModel)._TYPECODE}"/>
 	</bean>
 
-	<alias alias="airportService" name="defaultAirportService"/>
-	<bean id="defaultAirportService" class="it.uiip.airport.core.service.impl.DefaultAirportService" >
-		<property name="airportDao" ref="airportDao"></property>
-	</bean>
+    <alias name="defaultPassengerDao" alias="passengerDao"/>
+    <bean id="defaultPassengerDao" class="it.uiip.airport.core.dao.impl.DefaultPassengerDao">
+        <constructor-arg value="#{T(it.uiip.airport.core.model.PassengerModel)._TYPECODE}"/>
+    </bean>
 
+    <alias name="defaultPilotDao" alias="pilotDao"/>
+    <bean id="defaultPilotDao" class="it.uiip.airport.core.dao.impl.DefaultPilotDao">
+        <constructor-arg value="#{T(it.uiip.airport.core.model.PilotModel)._TYPECODE}"/>
+    </bean>
 
-	<alias name="defaultPassengerDao" alias="passengerDao"/>
-	<bean id="defaultPassengerDao" class="it.uiip.airport.core.dao.impl.DefaultPassengerDao">
-		<constructor-arg value="#{T(it.uiip.airport.core.model.PassengerModel)._TYPECODE}"/>
-	</bean>
+    <alias name="defaultAirportRouteDao" alias="airportRouteDao"/>
+    <bean id="defaultAirportRouteDao" class="it.uiip.airport.core.dao.impl.DefaultAirportRouteDao">
+        <constructor-arg value="#{T(it.uiip.airport.core.model.RouteModel)._TYPECODE}"/>
+    </bean>
 
+    <alias name="defaultAirportTicketDao" alias="airportTicketDao"/>
+    <bean id="defaultAirportTicketDao" class="it.uiip.airport.core.dao.impl.DefaultAirportTicketDao">
+        <constructor-arg value="#{T(it.uiip.airport.core.model.AirportTicketModel)._TYPECODE}"/>
+    </bean>
 
+    <alias name="defaultPlaneDao" alias="planeDao"/>
+    <bean id="defaultPlaneDao" class="it.uiip.airport.core.dao.impl.DefaultPlaneDao">
+        <constructor-arg value="#{T(it.uiip.airport.core.model.PlaneModel)._TYPECODE}"/>
+    </bean>
+
+    <alias name="defaultFlightDao" alias="flightDao"/>
+    <bean id="defaultFlightDao" class="it.uiip.airport.core.dao.impl.DefaultFlightDao">
+        <constructor-arg value="#{T(it.uiip.airport.core.model.FlightModel)._TYPECODE}"/>
+    </bean>
+
+    <alias name="defaultCabinCrewDao" alias="cabinCrewDao"/>
+    <bean id="defaultCabinCrewDao" class="it.uiip.airport.core.dao.impl.DefaultCabinCrewDao">
+        <constructor-arg value="#{T(it.uiip.airport.core.model.CabinCrewModel)._TYPECODE}"/>
+    </bean>
+
+    <alias name="defaultCrewDao" alias="crewDao"/>
+    <bean id="defaultCrewDao" class="it.uiip.airport.core.dao.impl.DefaultCrewDao">
+        <constructor-arg value="#{T(it.uiip.airport.core.model.CrewModel)._TYPECODE}"/>
+    </bean>
+
+    <!--SERVICES-->
+
+    <alias alias="airportService" name="defaultAirportService"/>
+    <bean id="defaultAirportService" class="it.uiip.airport.core.service.impl.DefaultAirportService" >
+        <property name="airportDao" ref="airportDao"/>
+    </bean>
+
+    <alias alias="crewService" name="defaultCrewService"/>
+    <bean id="defaultCrewService" class="it.uiip.airport.core.service.impl.DefaultCrewService">
+        <property name="crewDao" ref="crewDao"/>
+    </bean>
 
 
 	<alias alias="passengerService" name="defaultPassengerService"/>
 	<bean id="defaultPassengerService" class="it.uiip.airport.core.service.impl.DefaultPassengerService"
 					parent="defaultUserService">
-					<property name="passengerDao" ref="passengerDao"></property>
+					<property name="passengerDao" ref="passengerDao"/>
 	</bean>
 
-	<alias name="defaultPilotDao" alias="pilotDao"/>
-	<bean id="defaultPilotDao" class="it.uiip.airport.core.dao.impl.DefaultPilotDao">
-		<constructor-arg value="#{T(it.uiip.airport.core.model.PilotModel)._TYPECODE}"/>
-	</bean>
+
 
 	<alias alias="pilotService" name="defaultPilotService"/>
 	<bean id="defaultPilotService" class="it.uiip.airport.core.service.impl.DefaultPilotService"
 		  parent="defaultUserService">
-		<property name="pilotDao" ref="pilotDao"></property>
+		<property name="pilotDao" ref="pilotDao"/>
 	</bean>
 
-	<alias name="defaultAirportRouteDao" alias="airportRouteDao"/>
-	<bean id="defaultAirportRouteDao" class="it.uiip.airport.core.dao.impl.DefaultAirportRouteDao">
-		<constructor-arg value="#{T(it.uiip.airport.core.model.RouteModel)._TYPECODE}"/>
-	</bean>
+
 
 	<alias name="defaultAirportRouteService" alias="airportRouteService"/>
 	<bean id="defaultAirportRouteService" class="it.uiip.airport.core.service.impl.DefaultAirportRouteService">
-		<property name="airportRouteDao" ref="airportRouteDao"></property>
+		<property name="airportRouteDao" ref="airportRouteDao"/>
 	</bean>
 
 
-	<alias name="defaultAirportTicketDao" alias="airportTicketDao"/>
-	<bean id="defaultAirportTicketDao" class="it.uiip.airport.core.dao.impl.DefaultAirportTicketDao">
-		<constructor-arg value="#{T(it.uiip.airport.core.model.AirportTicketModel)._TYPECODE}"/>
-	</bean>
+
 
 	<alias name="defaultAirportTicketService" alias="airportTicketService"/>
 	<bean id="defaultAirportTicketService" class="it.uiip.airport.core.service.impl.DefaultAirportTicketService">
-		<property name="airportTicketDao" ref="airportTicketDao"></property>
+		<property name="airportTicketDao" ref="airportTicketDao"/>
 	</bean>
 
-	<alias name="defaultPlaneDao" alias="planeDao"/>
-	<bean id="defaultPlaneDao" class="it.uiip.airport.core.dao.impl.DefaultPlaneDao">
-		<constructor-arg value="#{T(it.uiip.airport.core.model.PlaneModel)._TYPECODE}"/>
-	</bean>
+
 
 	<alias name="defaultPlaneService" alias="planeService"/>
 	<bean id="defaultPlaneService" class="it.uiip.airport.core.service.impl.DefaultPlaneService">
-	<property name="planeDao" ref="planeDao"></property>
+	<property name="planeDao" ref="planeDao"/>
 	</bean>
 
-		<alias name="defaultFlightDao" alias="flightDao"/>
-	<bean id="defaultFlightDao" class="it.uiip.airport.core.dao.impl.DefaultFlightDao">
-		<constructor-arg value="#{T(it.uiip.airport.core.model.FlightModel)._TYPECODE}"/>
-	</bean>
+
 
 	<alias alias="flightService" name="defaultFlightService"/>
 	<bean id="defaultFlightService" class="it.uiip.airport.core.service.impl.DefaultFlightService" >
 		<property name="flightDao" ref="flightDao"/>
 	</bean>
 
-	<alias name="defaultCabinCrewDao" alias="cabinCrewDao"/>
-	<bean id="defaultCabinCrewDao" class="it.uiip.airport.core.dao.impl.DefaultCabinCrewDao">
-		<constructor-arg value="#{T(it.uiip.airport.core.model.CabinCrewModel)._TYPECODE}"/>
-	</bean>
+
 
 	<alias alias="cabinCrewService" name="defaultCabinCrewService"/>
 	<bean id="defaultCabinCrewService" class="it.uiip.airport.core.service.impl.DefaultCabinCrewService" >
