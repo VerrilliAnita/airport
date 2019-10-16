@@ -51,7 +51,6 @@ public class AirportController extends AbstractPageController
 		{
 			LOG.info("Lists of Airport null");
 		}
-
 		model.addAttribute("airports", airports);
 		return ControllerConstants.Views.Pages.Airport.AirportSearchPage;
 
@@ -82,6 +81,8 @@ public class AirportController extends AbstractPageController
 	final String airportDep, final Model model, final HttpServletResponse response)
 	{
 		final List<AirportRouteData> routes = routeFacade.getRoutesForAirportDep(airportDep);
+		final AirportData airportDeparture = airportFacade.getAirportForCode(airportDep);
+
 		if (routes == null)
 		{
 			LOG.info("Lists of routes null");
@@ -89,10 +90,12 @@ public class AirportController extends AbstractPageController
 		HashMap<String,List<CabinCrewData>> cabinCrewes = new HashMap<String,List<CabinCrewData>>();
 		
 		for (AirportRouteData route : routes) {
+			AirportData airportArrival= route.getFlight().getAirportArr();
 			CrewData crew = route.getCrew();
 			cabinCrewes.put(route.getCodeRoute(),crew.getCabinCrew());
+			model.addAttribute("airportArrival",airportArrival);
 		}
-		model.addAttribute("airportDep", airportDep);
+		model.addAttribute("airportDeparture", airportDeparture);
 		model.addAttribute("cabinCrewes", cabinCrewes);
 		return ControllerConstants.Views.Pages.Airport.CabinCrewesPage;
 

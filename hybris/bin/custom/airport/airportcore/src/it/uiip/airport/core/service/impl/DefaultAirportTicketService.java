@@ -28,15 +28,15 @@ public class DefaultAirportTicketService implements AirportTicketService
 	@Override
 	public List<AirportTicketModel> getTicketsForCodeRoute(final String codeRoute)
 	{
-		LOG.info("Invoke method findTicketsByCodeFlight in DefaultAirportTicketService");
+		LOG.info("Invoke method getTicketsForCodeRoute in DefaultAirportTicketService");
 		return airportTicketDao.findTicketsByCodeRoute(codeRoute);
 	}
 
 	@Override
-	public List<AirportTicketModel> getTicketsForPassenger(final String uid)
+	public List<AirportTicketModel> getTicketsForPassengerUid(final String uid)
 	{
-		LOG.info("Invoke method findTicketsByPassengerCf in DefaultAirportTicketService");
-		return airportTicketDao.findTicketsByPassengerCf(uid);
+		LOG.info("Invoke method getTicketsForPassengerUid in DefaultAirportTicketService");
+		return airportTicketDao.findTicketsByPassengerUid(uid);
 	}
 
 	public AirportTicketDao getAirportTicketDao()

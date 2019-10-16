@@ -38,6 +38,7 @@
 		class="it.uiip.airport.facades.populators.AirportRoutePopulator">
 		<property name="flightConverter" ref="flightConverter"/>
 		<property name="airportTicketConverter" ref="airportTicketConverter"/>
+		<property name="crewConverter"	ref = "crewConverter"/>
 	</bean>
 	
 	
@@ -137,8 +138,6 @@
 		class="it.uiip.airport.facades.populators.PlaneReversePopulator">
 	</bean>
 
-
-
 	<alias alias="flightFacade" name="defaultFlightFacade" />
 	<bean id="defaultFlightFacade"
 		class="it.uiip.airport.facades.impl.DefaultFlightFacade">
@@ -172,6 +171,11 @@
 		<property name="passengerConverter" ref="passengerConverter" />
 	</bean>
 
+	<alias name="defaultPassengerPopulator"
+		   alias="passengerPopulator" />
+	<bean id="defaultPassengerPopulator"
+		  class="it.uiip.airport.facades.populators.PassengerPopulator"/>
+
 	<alias name="defaultPassengerConverter"
 		alias="passengerConverter" />
 	<bean id="defaultPassengerConverter"
@@ -185,10 +189,81 @@
 		</property>
 	</bean>
 
-	<alias name="defaultPassengerPopulator"
-		alias="passengerPopulator" />
-	<bean id="defaultPassengerPopulator"
-		class="it.uiip.airport.facades.populators.PassengerPopulator"></bean>
+	<alias alias="pilotFacade" name="defaultPilotFacade" />
+	<bean id="defaultPilotFacade"
+		  class="it.uiip.airport.facades.impl.DefaultPilotFacade">
+		<property name="pilotService" ref="pilotService" />
+		<property name="pilotConverter" ref="pilotConverter" />
+	</bean>
+
+
+	<alias name="defaultPilotPopulator"
+		   alias="pilotPopulator" />
+	<bean id="defaultPilotPopulator"
+		  class="it.uiip.airport.facades.populators.PilotPopulator"/>
+
+	<alias name="defaultPilotConverter"
+		   alias="pilotConverter"/>
+	<bean id ="defaultPilotConverter"
+		  parent="abstractPopulatingConverter">
+			<property name ="targetClass"
+					  value="it.uiip.airport.facades.data.PilotData"/>
+		<property name="populators">
+			<list>
+				<ref bean="pilotPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias name="defaultCrewPopulator"
+		   alias="crewPopulator" />
+	<bean id="defaultCrewPopulator"
+		  class="it.uiip.airport.facades.populators.CrewPopulator">
+		<property name="pilotConverter" ref="pilotConverter"/>
+		<property name="cabinCrewConverter" ref="cabinCrewConverter"/>
+	</bean>
+
+	<alias name="defaultCrewConverter"
+		   alias="crewConverter"/>
+	<bean id ="defaultCrewConverter"
+		  parent="abstractPopulatingConverter">
+		<property name ="targetClass"
+				  value="it.uiip.airport.facades.data.CrewData"/>
+		<property name="populators">
+			<list>
+				<ref bean="crewPopulator" />
+			</list>
+		</property>
+	</bean>
+
+	<alias alias="cabinCrewFacade" name="defaultCabinCrewFacade" />
+	<bean id="defaultCabinCrewFacade"
+		  class="it.uiip.airport.facades.impl.DefaultCabinCrewFacade">
+		<property name="cabinCrewService" ref="cabinCrewService" />
+		<property name="cabinCrewConverter" ref="cabinCrewConverter" />
+	</bean>
+
+	<alias name="defaultCabinCrewPopulator"
+		   alias="cabinCrewPopulator" />
+	<bean id="defaultCabinCrewPopulator"
+		  class="it.uiip.airport.facades.populators.CabinCrewPopulator">
+	</bean>
+
+	<alias name="defaultCabinCrewConverter"
+		   alias="cabinCrewConverter"/>
+	<bean id ="defaultCabinCrewConverter"
+		  parent="abstractPopulatingConverter">
+		<property name ="targetClass"
+				  value="it.uiip.airport.facades.data.CabinCrewData"/>
+		<property name="populators">
+			<list>
+				<ref bean="cabinCrewPopulator" />
+			</list>
+		</property>
+	</bean>
+
+
+
 
 
 	<alias alias="simpleSuggestionFacade"

@@ -30,10 +30,26 @@ public class AirportTicketPopulator implements Populator<AirportTicketModel, Air
 	@Override
 	public void populate(final AirportTicketModel source, final AirportTicketData target) throws ConversionException
 	{
-		target.setCodeAirportTicket(source.getCodeAirportTicket());
-		target.setPassenger(passengerConverter.convert(source.getPassenger()));
-		target.setPrice(source.getPrice());
-		target.setSeat(source.getSeat());
+		if(source!=null)
+		{
+			if(source.getCodeAirportTicket()!=null)
+			{
+				target.setCodeAirportTicket(source.getCodeAirportTicket());
+			}
+			if(source.getPassenger()!=null)
+			{
+				target.setPassenger(passengerConverter.convert(source.getPassenger()));
+			}
+			if(source.getPrice()!=null)
+			{
+				target.setPrice(source.getPrice());
+			}
+			if(source.getSeat()!=null)
+			{
+				target.setSeat(source.getSeat());
+			}
+
+		}
 	}
 
 

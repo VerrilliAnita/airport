@@ -48,7 +48,7 @@
 		<property name="codeFiscal" type="String"/>
 		<property name="name" type="String"/>
 		<property name="birthday" type="java.util.Date"/>
-		<property name="age" type="Integer"/>	
+		<property name="age" type="Integer"/>
 	</bean>
 	
 	<bean class="it.uiip.airport.facades.data.CrewData">

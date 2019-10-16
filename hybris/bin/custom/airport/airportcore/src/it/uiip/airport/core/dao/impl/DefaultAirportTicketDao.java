@@ -47,7 +47,7 @@ public class DefaultAirportTicketDao extends DefaultGenericDao<AirportTicketMode
 	 * @see it.uiip.airport.core.dao.AirportTicketDao#findTicketsByPassengerCf(java.lang.String)
 	 */
 	@Override
-	public List<AirportTicketModel> findTicketsByPassengerCf(final String uid)
+	public List<AirportTicketModel> findTicketsByPassengerUid(final String uid)
 	{
 		final StringBuilder queryStr = new StringBuilder();
 		queryStr.append("SELECT {T.Pk} FROM {AirportTicket as T join Passenger as P on {P.pk}={T.passenger} }");

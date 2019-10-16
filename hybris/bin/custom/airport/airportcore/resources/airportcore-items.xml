@@ -82,7 +82,7 @@
 		
 		<relation localized="false" code="CrewCabinCrewRelation" autocreate="true" generate="true">
 			<sourceElement qualifier="crew" type="Crew" cardinality="one" >
-				<modifiers read="true" write="true" search="true" optional="false"/>		
+				<modifiers read="true" write="true" search="true" optional="true"/>
 			</sourceElement>
 			<targetElement qualifier="cabinCrew" type="CabinCrew" 
 						   cardinality="many" collectiontype="set">
@@ -172,31 +172,31 @@
 			<deployment table="flight" typecode="21347" />
 			<attributes>
 				<attribute qualifier="codeFlight" type="java.lang.String">
-					<persistence type="property"></persistence>
+					<persistence type="property"/>
 					<modifiers optional="false"/>
 				</attribute>
 				<attribute qualifier="weekDay" type="daysEnum">
-					<persistence type="property"></persistence>
+					<persistence type="property"/>
 					<modifiers optional="true"/>
 				</attribute>
 				<attribute qualifier="airportDep" type="Airport">
-					<persistence type="property"></persistence>
+					<persistence type="property"/>
 					<modifiers optional="true"/>
 				</attribute>
 				<attribute qualifier="airportArr" type="Airport">
-					<persistence type="property"></persistence>
+					<persistence type="property"/>
 					<modifiers optional="true"/>
 				</attribute>
 				<attribute qualifier="plane" type="Plane">
-					<persistence type="property"></persistence>
+					<persistence type="property"/>
 					<modifiers optional="true"/>
 				</attribute>
 				<attribute qualifier="timeDep" type="java.lang.Integer">
-					<persistence type="property"></persistence>
+					<persistence type="property"/>
 					<modifiers optional="true"/>
 				</attribute>
 				<attribute qualifier="timeArr" type="java.lang.Integer">
-					<persistence type="property"></persistence>
+					<persistence type="property"/>
 					<modifiers optional="true"/>
 				</attribute>
 			</attributes>
@@ -237,15 +237,15 @@
 			<deployment table="passenger" typecode="23000" />
 			<attributes>
 				<attribute qualifier="codeFiscal" type="java.lang.String">
-					<persistence type="property"></persistence>
+					<persistence type="property"/>
 					<modifiers optional="false"/>
 				</attribute>
 				<attribute qualifier="birthday" type="java.util.Date">
-					<persistence type="property"></persistence>
-					<modifiers optional="true"/>
+					<persistence type="property"/>
+					<modifiers optional="false"/>
 				</attribute>
 				<attribute qualifier="age" type="java.lang.Integer">
-					<persistence type="dynamic" attributeHandler="agePassengerHandler"></persistence>
+					<persistence type="dynamic" attributeHandler="agePassengerHandler"/>
 					<modifiers write="false"/>
 				</attribute>
 			</attributes>
@@ -256,15 +256,15 @@
 			<deployment table="pilot" typecode="21351" />
 			<attributes>
 				<attribute qualifier="codeFiscal" type="java.lang.String">
-					<persistence type="property"></persistence>
+					<persistence type="property"/>
 					<modifiers optional="false"/>
 				</attribute>
 				<attribute qualifier="birthday" type="java.util.Date">
-					<persistence type="property"></persistence>
-					<modifiers optional="true"/>
+					<persistence type="property"/>
+					<modifiers optional="false"/>
 				</attribute>
 				<attribute qualifier="age" type="java.lang.Integer">
-					<persistence type="dynamic" attributeHandler="agePilotHandler"></persistence>
+					<persistence type="dynamic" attributeHandler="agePilotHandler"/>
 					<modifiers write="false"/>
 				</attribute>
 			</attributes>

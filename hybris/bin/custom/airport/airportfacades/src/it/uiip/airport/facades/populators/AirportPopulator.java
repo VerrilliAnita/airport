@@ -14,23 +14,20 @@ import it.uiip.airport.facades.data.AirportData;
  * @author soprasteria
  *
  */
-public class AirportPopulator implements Populator<AirportModel, AirportData>
-{
+public class AirportPopulator implements Populator<AirportModel, AirportData> {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.hybris.platform.converters.Populator#populate(java.lang.Object, java.lang.Object)
-	 */
-	@Override
-	public void populate(final AirportModel source, final AirportData target) throws ConversionException
-	{
-		target.setCodeAirport(source.getCodeAirport());
-		target.setName(source.getName());
-		target.setCity(source.getCity());
-		target.setCountry(source.getCountry());
-		target.setRunways(source.getRunways());
-
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see de.hybris.platform.converters.Populator#populate(java.lang.Object, java.lang.Object)
+     */
+    @Override
+    public void populate(final AirportModel source, final AirportData target) throws ConversionException {
+            target.setCodeAirport(source.getCodeAirport());
+            target.setName(source.getName());
+            target.setCity(source.getCity());
+            target.setCountry(source.getCountry());
+            target.setRunways(source.getRunways());
+    }
 
 }

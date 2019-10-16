@@ -7,6 +7,8 @@ import de.hybris.platform.converters.Populator;
 import de.hybris.platform.servicelayer.dto.converter.ConversionException;
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 
+import it.uiip.airport.core.model.CrewModel;
+import it.uiip.airport.facades.data.CrewData;
 import org.springframework.beans.factory.annotation.Required;
 
 import it.uiip.airport.core.model.AirportTicketModel;
@@ -27,6 +29,8 @@ public class AirportRoutePopulator implements Populator<RouteModel, AirportRoute
 {
 	private Converter<FlightModel, FlightData> flightConverter;
 	private Converter<AirportTicketModel, AirportTicketData> airportTicketConverter;
+	private Converter<CrewModel, CrewData> crewConverter;
+
 
 	@Override
 	public void populate(final RouteModel source, final AirportRouteData target) throws ConversionException
@@ -35,6 +39,7 @@ public class AirportRoutePopulator implements Populator<RouteModel, AirportRoute
 		target.setFlight(flightConverter.convert(source.getFlight()));
 		target.setDateRouteDep(source.getDateRouteDep());
 		target.setDateRouteArr(source.getDateRouteArr());
+		target.setCrew(crewConverter.convert(source.getCrew()));
 		target.setTickets(airportTicketConverter.convertAll(source.getAirportTickets()));
 
 	}
@@ -62,4 +67,12 @@ public class AirportRoutePopulator implements Populator<RouteModel, AirportRoute
 		this.flightConverter = flightConverter;
 	}
 
+	public Converter<CrewModel, CrewData> getCrewConverter() {
+		return crewConverter;
+	}
+
+	@Required
+	public void setCrewConverter(Converter<CrewModel, CrewData> crewConverter) {
+		this.crewConverter = crewConverter;
+	}
 }

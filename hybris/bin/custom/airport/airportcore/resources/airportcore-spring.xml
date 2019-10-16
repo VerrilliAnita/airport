@@ -91,11 +91,25 @@
 	<bean id="defaultPassengerDao" class="it.uiip.airport.core.dao.impl.DefaultPassengerDao">
 		<constructor-arg value="#{T(it.uiip.airport.core.model.PassengerModel)._TYPECODE}"/>
 	</bean>
+
+
+
 	
 	<alias alias="passengerService" name="defaultPassengerService"/>
 	<bean id="defaultPassengerService" class="it.uiip.airport.core.service.impl.DefaultPassengerService" 
 					parent="defaultUserService">
 					<property name="passengerDao" ref="passengerDao"></property>
+	</bean>
+
+	<alias name="defaultPilotDao" alias="pilotDao"/>
+	<bean id="defaultPilotDao" class="it.uiip.airport.core.dao.impl.DefaultPilotDao">
+		<constructor-arg value="#{T(it.uiip.airport.core.model.PilotModel)._TYPECODE}"/>
+	</bean>
+
+	<alias alias="pilotService" name="defaultPilotService"/>
+	<bean id="defaultPilotService" class="it.uiip.airport.core.service.impl.DefaultPilotService"
+		  parent="defaultUserService">
+		<property name="pilotDao" ref="pilotDao"></property>
 	</bean>
 	
 	<alias name="defaultAirportRouteDao" alias="airportRouteDao"/>
@@ -136,7 +150,7 @@
 	
 	<alias alias="flightService" name="defaultFlightService"/>
 	<bean id="defaultFlightService" class="it.uiip.airport.core.service.impl.DefaultFlightService" >
-		<property name="flightDao" ref="flightDao"></property>
+		<property name="flightDao" ref="flightDao"/>
 	</bean>
 	
 	<alias name="defaultCabinCrewDao" alias="cabinCrewDao"/>
@@ -146,7 +160,7 @@
 	
 	<alias alias="cabinCrewService" name="defaultCabinCrewService"/>
 	<bean id="defaultCabinCrewService" class="it.uiip.airport.core.service.impl.DefaultCabinCrewService" >
-		<property name="cabinCrewDao" ref="cabinCrewDao"></property>
+		<property name="cabinCrewDao" ref="cabinCrewDao"/>
 	</bean>
 	
 

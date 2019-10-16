@@ -85,9 +85,9 @@ public class DefaultAirportRouteDao extends DefaultGenericDao<RouteModel> implem
 	public List<RouteModel> findRoutesByAirportDep(String airport) {
 		final StringBuilder queryStr = new StringBuilder();
 		queryStr.append("Select {R.pk}");
-		queryStr.append("FROM {Route AS R JOIN Flight as F ON {R.flight}={F.pk}");
+		queryStr.append("FROM {Route AS R JOIN Crew AS C ON {R.crew} = {C.PK} JOIN Flight as F ON {R.flight}={F.pk}");
 		queryStr.append("JOIN Airport AS A ON {F.airportDep}={A.pk} }");
-		queryStr.append("WHERE {F.airportDep}=?airport");
+		queryStr.append("WHERE {A.codeAirport}=?airport");
 		final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
 		fsq.addQueryParameter("airport", airport);
 		final SearchResult<RouteModel> result = getFlexibleSearchService().search(fsq);
@@ -101,9 +101,11 @@ public class DefaultAirportRouteDao extends DefaultGenericDao<RouteModel> implem
 		queryStr.append("Select {R.pk}");
 		queryStr.append("FROM {ROUTE AS R JOIN CREW AS C ON {R.crew}={C.pk}");
 		queryStr.append("JOIN PILOT AS P ON {C.commander}={P.pk} }");
-		queryStr.append("WHERE {P.name}=?commander AND {R.dateRouteDep} LIKE '%-?month%'");
+		queryStr.append("WHERE {P.name}=?commander AND {R.dateRouteDep} LIKE CONCAT('%', CONCAT( ?month, '%'))");
+
 		final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
 		fsq.addQueryParameter("commander", commander);
+		fsq.addQueryParameter("month",month);
 		final SearchResult<RouteModel> result = getFlexibleSearchService().search(fsq);
 		return result.getResult();
 	}

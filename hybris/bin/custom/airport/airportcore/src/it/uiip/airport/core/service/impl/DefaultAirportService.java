@@ -31,6 +31,11 @@ public class DefaultAirportService implements AirportService
 		return airportDao.findAirportsByCity(city);
 	}
 
+	@Override
+	public AirportModel getAirportForCode(String code) {
+		return airportDao.findAirportByCode(code);
+	}
+
 
 	/**
 	 * @return the airportDao

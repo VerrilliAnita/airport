@@ -28,11 +28,11 @@ public class RemovePassengerInterceptor implements RemoveInterceptor<PassengerMo
 	@Override
 	public void onRemove(final PassengerModel passenger, final InterceptorContext context) throws InterceptorException
 	{
-		final List<AirportTicketModel> tickets = airportTicketService.getTicketsForPassenger(passenger.getUid());
-		final Date oggi = new Date();
+		final List<AirportTicketModel> tickets = airportTicketService.getTicketsForPassengerUid(passenger.getUid());
+		final Date today = new Date();
 		for (final AirportTicketModel t : tickets)
 		{
-			if (t.getRoute().getDateRouteDep().after(oggi))
+			if (t.getRoute().getDateRouteDep().after(today))
 			{
 				context.getModelService().remove(t);
 			}

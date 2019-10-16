@@ -33,7 +33,6 @@ public class DefaultPassengerDao extends DefaultGenericDao<PassengerModel> imple
 	public List<PassengerModel> findPassengersByFlightDate(final Date date)
 	{
 
-		final StringBuilder queryString = new StringBuilder();
 		final StringBuilder queryStr = new StringBuilder();
 		queryStr.append("SELECT {P:PK}");
 		queryStr.append("FROM{Passenger as P JOIN PassengerRouteRelation as rel");

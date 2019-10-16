@@ -15,7 +15,7 @@ import it.uiip.airport.core.model.AirportModel;
 public interface AirportService
 {
 	public List<AirportModel> getAirportsForCity(String city);
-
+	public AirportModel getAirportForCode(String code);
 	public List<AirportModel> getAllAirport();
 
 }

@@ -9,10 +9,26 @@ public class PassengerPopulator implements Populator <PassengerModel,PassengerDa
 
 	@Override
 	public void populate(PassengerModel source, PassengerData target) throws ConversionException {
-		target.setName(source.getName());
-		target.setCodeFiscal(source.getCodeFiscal());
-		target.setBirthday(source.getBirthday());
-		target.setAge(source.getAge());
+		if(source!=null)
+		{
+			if(source.getName()!=null)
+			{
+				target.setName(source.getName());
+			}
+			if(source.getCodeFiscal()!=null)
+			{
+				target.setCodeFiscal(source.getCodeFiscal());
+			}
+			if(source.getBirthday()!=null)
+			{
+				target.setBirthday(source.getBirthday());
+			}
+			if(source.getAge()!=null)
+			{
+				target.setAge(source.getAge());
+			}
+		}
+
 		
 	}
 

@@ -33,6 +33,11 @@ public class DefaultAirportFacade implements AirportFacade
 		return airportConverter.convertAll(airportService.getAllAirport());
 	}
 
+	@Override
+	public AirportData getAirportForCode(String code) {
+		return airportConverter.convert(airportService.getAirportForCode(code));
+	}
+
 
 	public AirportService getAirportService()
 	{

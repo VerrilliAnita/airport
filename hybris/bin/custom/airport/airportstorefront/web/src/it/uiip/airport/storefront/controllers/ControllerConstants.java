@@ -97,8 +97,8 @@ public interface ControllerConstants
 			{
 				String AirportSearchPage = "pages/airport/searchAirport";
 				String AirportInfoPage = "pages/airport/viewInfoFlight";
-				String CabinCrewesPage = "pages/airport/searchRoute/cabinCrew";
-				String CommanderRoutePage="pages/airport/searchRoute/commander";
+				String CabinCrewesPage = "pages/airport/cabinCrew";
+				String CommanderRoutePage="pages/airport/commander";
 			}
 
 			interface Checkout // NOSONAR

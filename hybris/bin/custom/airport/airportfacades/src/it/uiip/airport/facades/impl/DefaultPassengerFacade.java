@@ -21,6 +21,11 @@ public class DefaultPassengerFacade implements PassengerFacade {
 		return passengerConverter.convertAll(passengerService.getPassengersForDate(date));
 	}
 
+	@Override
+	public List<PassengerData> getAllPassengers() {
+		return passengerConverter.convertAll(passengerService.getAllPassengers());
+	}
+
 	public PassengerService getPassengerService() {
 		return passengerService;
 	}
