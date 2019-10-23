@@ -56,7 +56,7 @@ public class DefaultFlightDao extends DefaultGenericDao<FlightModel> implements 
 	 * @see it.uiip.airport.core.dao.FlightDao#findAllFlight()
 	 */
 	@Override
-	public List<FlightModel> findAllFlight()
+	public List<FlightModel> findAllFlights()
 	{
 		final StringBuilder queryString = new StringBuilder();
 		queryString.append("SELECT {f.pk} ");

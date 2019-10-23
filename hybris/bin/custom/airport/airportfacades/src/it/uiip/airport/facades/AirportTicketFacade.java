@@ -13,4 +13,5 @@ import it.uiip.airport.facades.data.AirportTicketData;
 public interface AirportTicketFacade
 {
 	public List<AirportTicketData> getTicketsForCodeFlight(String codeRoute);
+	public List<AirportTicketData> getTicketsForPassengerUid(String uid);
 }

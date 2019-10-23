@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
+import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.search.FlexibleSearchQuery;
 import de.hybris.platform.servicelayer.search.SearchResult;
 import de.hybris.platform.servicelayer.internal.dao.DefaultGenericDao;
@@ -19,6 +20,24 @@ public class DefaultCabinCrewDao extends DefaultGenericDao<CabinCrewModel> imple
 	public DefaultCabinCrewDao(String typecode) {
 		super(typecode);
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public CabinCrewModel findCabinCrewByCodeFiscal(String codeFiscal) {
+		final StringBuilder queryStr = new StringBuilder();
+		queryStr.append("SELECT {CC.pk} FROM {CabinCrew AS CC}");
+		queryStr.append("WHERE {CC.codeFiscal} = ?codeFiscal");
+		final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
+		fsq.addQueryParameter("codeFiscal", codeFiscal);
+		try
+		{
+			final CabinCrewModel result = getFlexibleSearchService().searchUnique(fsq);
+			return result;
+		}
+		catch (ModelNotFoundException e)
+		{
+			return null;
+		}
 	}
 
 	@Override
@@ -40,7 +59,7 @@ public class DefaultCabinCrewDao extends DefaultGenericDao<CabinCrewModel> imple
 
 	@Override
 	public List<CabinCrewModel> findAllCabinCrewes() {
-		final StringBuilder queryStr = new StringBuilder();
+		  final StringBuilder queryStr = new StringBuilder();
 		  queryStr.append("SELECT {CC.pk} FROM {CabinCrew AS CC }");
 		  final FlexibleSearchQuery fsq = new FlexibleSearchQuery(queryStr);
 		  final SearchResult<CabinCrewModel> result = getFlexibleSearchService().search(fsq);

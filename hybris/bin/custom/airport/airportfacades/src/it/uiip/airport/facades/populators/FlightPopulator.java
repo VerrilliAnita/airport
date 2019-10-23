@@ -29,13 +29,38 @@ public class FlightPopulator implements Populator<FlightModel, FlightData>
 	@Override
 	public void populate(final FlightModel source, final FlightData target) throws ConversionException
 	{
-		target.setCodeFlight(source.getCodeFlight());
-		target.setWeekDay(source.getWeekDay().toString());
-		target.setAirportDep(airportConverter.convert(source.getAirportDep()));
-		target.setAirportArr(airportConverter.convert(source.getAirportArr()));
-		target.setPlane(planeConverter.convert(source.getPlane()));
-		target.setTimeDep(source.getTimeDep());
-		target.setTimeArr(source.getTimeArr());
+		if(source!=null)
+		{
+			if(source.getCodeFlight()!=null)
+			{
+				target.setCodeFlight(source.getCodeFlight());
+			}
+			if(source.getWeekDay()!=null)
+			{
+				target.setWeekDay(source.getWeekDay().toString());
+			}
+			if(source.getAirportDep()!=null)
+			{
+				target.setAirportDep(airportConverter.convert(source.getAirportDep()));
+			}
+			if(source.getAirportArr()!=null)
+			{
+				target.setAirportArr(airportConverter.convert(source.getAirportArr()));
+			}
+			if(source.getPlane()!=null)
+			{
+				target.setPlane(planeConverter.convert(source.getPlane()));
+			}
+			if(source.getTimeDep()!=null)
+			{
+				target.setTimeDep(source.getTimeDep());
+			}
+			if(source.getTimeArr()!=null)
+			{
+				target.setTimeArr(source.getTimeArr());
+			}
+		}
+
 	}
 
 	/**

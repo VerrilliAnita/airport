@@ -7,6 +7,8 @@ import de.hybris.platform.servicelayer.dto.converter.Converter;
 
 import java.util.List;
 
+import it.uiip.airport.core.model.CrewModel;
+import it.uiip.airport.facades.data.CrewData;
 import org.springframework.beans.factory.annotation.Required;
 
 import it.uiip.airport.core.model.RouteModel;
@@ -24,6 +26,7 @@ public class DefaultAirportRouteFacade implements AirportRouteFacade
 	private AirportRouteService airportRouteService;
 	private Converter<RouteModel, AirportRouteData> airportRouteConverter;
 
+
 	@Override
 	public List<AirportRouteData> getAllRoutes()
 	{
@@ -32,9 +35,9 @@ public class DefaultAirportRouteFacade implements AirportRouteFacade
 
 
 	@Override
-	public List<AirportRouteData> getRoutesForCode(final String codeRoute)
+	public AirportRouteData getRouteForCode(final String codeRoute)
 	{
-		return airportRouteConverter.convertAll(airportRouteService.getRoutesForCode(codeRoute));
+		return airportRouteConverter.convert(airportRouteService.getRouteForCode(codeRoute));
 	}
 
 	public AirportRouteService getAirportRouteService()

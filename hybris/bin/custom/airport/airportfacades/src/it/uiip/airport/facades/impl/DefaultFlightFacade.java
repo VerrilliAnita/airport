@@ -5,6 +5,7 @@ package it.uiip.airport.facades.impl;
 
 import de.hybris.platform.servicelayer.dto.converter.Converter;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Required;
@@ -29,11 +30,20 @@ public class DefaultFlightFacade implements FlightFacade
 	 * @see it.uiip.airport.facades.FlightFacade#getAllFlight()
 	 */
 	@Override
-	public List<FlightData> getAllFlight()
+	public List<FlightData> getAllFlights()
 	{
-		return flightConverter.convertAll(flightService.getAllFlight());
+		return flightConverter.convertAll(flightService.getAllFlights());
 	}
 
+	@Override
+	public List<FlightData> getFlightsForDepartureDate(Date date) {
+		return flightConverter.convertAll(flightService.getFlightsForDepartureDate(date));
+	}
+
+	@Override
+	public List<FlightData> getFlightsForDepartureCity(String city) {
+		return flightConverter.convertAll(flightService.getFlightsForDepartureCity(city));
+	}
 	public FlightService getFlightService()
 	{
 		return flightService;

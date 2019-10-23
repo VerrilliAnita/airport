@@ -9,8 +9,8 @@
 	<h1>Airport Listing</h1>
 	<ul>
 		<c:forEach var="airport" items="${airports}">
-			<li>${airport.name}</li>
-		</c:forEach>
+        			<li>${airport.name}</li>
+        </c:forEach>
 	</ul>
 </body>
 </html>

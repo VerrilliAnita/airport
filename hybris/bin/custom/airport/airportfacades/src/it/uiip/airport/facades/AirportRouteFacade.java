@@ -16,7 +16,7 @@ public interface AirportRouteFacade
 {
 	public List<AirportRouteData> getAllRoutes();
 
-	public List<AirportRouteData> getRoutesForCode(String codeRoute);
+	public AirportRouteData getRouteForCode(String codeRoute);
 	
 	public List<AirportRouteData> getRoutesForAirportDep(String airportDep);
 	

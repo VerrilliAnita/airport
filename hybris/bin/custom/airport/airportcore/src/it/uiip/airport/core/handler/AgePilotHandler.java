@@ -9,6 +9,7 @@ public class AgePilotHandler implements DynamicAttributeHandler<Integer, PilotMo
 
 	@Override
 	public Integer get(PilotModel user) {
+
 		return user.getCurrentDate().getYear() - user.getBirthday().getYear();
 	}
 

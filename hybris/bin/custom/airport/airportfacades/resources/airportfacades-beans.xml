@@ -48,7 +48,7 @@
 		<property name="codeFiscal" type="String"/>
 		<property name="name" type="String"/>
 		<property name="birthday" type="java.util.Date"/>
-		<property name="age" type="Integer"/>	
+		<property name="age" type="Integer"/>
 	</bean>
 	
 	<bean class="it.uiip.airport.facades.data.CrewData">
@@ -63,7 +63,7 @@
 		<property name="flight" type="it.uiip.airport.facades.data.FlightData"/>
 		<property name="dateRouteDep" type="java.util.Date"/>
 		<property name="dateRouteArr" type="java.util.Date"/>
-		<property name="crew" type="it.uiip.airport.facades.data.CrewData"></property>
+		<property name="crew" type="it.uiip.airport.facades.data.CrewData"/>
 		<property name="tickets" type="java.util.List&lt;it.uiip.airport.facades.data.AirportTicketData>"/>
 	</bean>
 	
@@ -81,10 +81,10 @@
 	</bean>
 	
 	<bean class="it.uiip.airport.facades.data.PassengerData">
- 		<property name="codeFiscal" type="String"></property>
- 		<property name="name" type="String"></property>
- 		<property name="birthday" type="java.util.Date"></property>
- 		<property name="age" type="Integer"></property>
+ 		<property name="codeFiscal" type="String"/>
+ 		<property name="name" type="String"/>
+ 		<property name="birthday" type="java.util.Date"/>
+ 		<property name="age" type="Integer"/>
 	</bean>
 	
 	<bean class="it.uiip.airport.facades.data.AirportTicketData">

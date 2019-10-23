@@ -16,12 +16,12 @@ public interface AirportRouteService
 {
 	public List<RouteModel> getAllRoutes();
 
-	public List<RouteModel> getRoutesForCode(String codeRoute);
+	public RouteModel getRouteForCode(String codeRoute);
 
 	public List<RouteModel> getRoutesForStatus(String status);
 	
 	public List<RouteModel> getRoutesForAirportDep(String airportDep);
 	
-	public List<RouteModel> getRoutesForCommander(String commander,String month);
+	public List<RouteModel> getRoutesForCommander(String commander, String month);
 
 }

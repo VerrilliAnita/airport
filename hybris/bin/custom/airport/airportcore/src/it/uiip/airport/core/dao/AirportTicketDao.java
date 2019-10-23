@@ -19,5 +19,5 @@ public interface AirportTicketDao extends GenericDao<AirportTicketModel>
 {
 	public List<AirportTicketModel> findTicketsByCodeRoute(String codeRoute);
 
-	public List<AirportTicketModel> findTicketsByPassengerCf(String uid);
+	public List<AirportTicketModel> findTicketsByPassengerUid(String uid);
 }

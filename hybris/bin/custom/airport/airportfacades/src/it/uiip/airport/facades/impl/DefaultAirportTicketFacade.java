@@ -33,6 +33,11 @@ public class DefaultAirportTicketFacade implements AirportTicketFacade
 		return airportTicketConverter.convertAll(airportTicketService.getTicketsForCodeRoute(codeFlight));
 	}
 
+	@Override
+	public List<AirportTicketData> getTicketsForPassengerUid(String uid) {
+		return airportTicketConverter.convertAll(airportTicketService.getTicketsForPassengerUid(uid));
+	}
+
 
 	/**
 	 * @return the ticketService

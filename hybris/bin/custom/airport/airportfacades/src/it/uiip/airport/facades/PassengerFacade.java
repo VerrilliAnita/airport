@@ -8,5 +8,6 @@ import it.uiip.airport.facades.data.PassengerData;
 public interface PassengerFacade {
 	
 	public List <PassengerData> getPassengersForDate(Date date);
+	public List <PassengerData> getAllPassengers();
 	
 }

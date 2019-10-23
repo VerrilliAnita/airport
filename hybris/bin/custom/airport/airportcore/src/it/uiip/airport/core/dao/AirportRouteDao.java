@@ -15,13 +15,13 @@ import it.uiip.airport.core.model.RouteModel;
  */
 public interface AirportRouteDao
 {
-	public List<RouteModel> findAllAirportRoute();
+	public List<RouteModel> findAllAirportRoutes();
 	
 	public List<RouteModel> findAirportRouteByCityAndDay(String city,Date day);
 
-	public List<RouteModel> findAirportRouteByCode(String codeRoute);
+	public RouteModel findAirportRouteByCode(String codeRoute);
 
-	public List<RouteModel> findAirportRouteDeleted(String status);
+	public List<RouteModel> findAirportRoutesByStatus(String status);
 	
 	public List<RouteModel> findRoutesByAirportDep(String airport);
 	

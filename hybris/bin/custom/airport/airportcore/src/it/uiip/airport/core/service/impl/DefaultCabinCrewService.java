@@ -15,6 +15,12 @@ public class DefaultCabinCrewService implements CabinCrewService{
 	private CabinCrewDao cabinCrewDao;
 
 	@Override
+	public CabinCrewModel getCabinCrewForCodeFiscal(String codeFiscal) {
+		LOG.info("Invoke method getCabinCrewForCodeFiscal in DefaultCabinCrewService");
+		return cabinCrewDao.findCabinCrewByCodeFiscal(codeFiscal);
+	}
+
+	@Override
 	public List<CabinCrewModel> getCabinCrewForMaxNumberOfRoutes() {
 		LOG.info("Invoke method getCabinCrewForMaxNumberOfRoutes in DefaultCabinCrewService");
 		return cabinCrewDao.findCabinCrewByMaxNumberOfRoutes();

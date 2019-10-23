@@ -16,5 +16,5 @@ public interface AirportTicketService
 {
 	public List<AirportTicketModel> getTicketsForCodeRoute(String codeRoute);
 
-	public List<AirportTicketModel> getTicketsForPassenger(String uid);
+	public List<AirportTicketModel> getTicketsForPassengerUid(String uid);
 }
