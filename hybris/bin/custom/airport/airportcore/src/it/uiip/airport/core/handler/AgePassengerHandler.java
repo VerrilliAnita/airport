@@ -14,7 +14,7 @@ public class AgePassengerHandler implements DynamicAttributeHandler<Integer, Pas
 
 	@Override
 	public void set(PassengerModel User, Integer age) {
-
+		throw new UnsupportedOperationException();
 	}
 
 }
