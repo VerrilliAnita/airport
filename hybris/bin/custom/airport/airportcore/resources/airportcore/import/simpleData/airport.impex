@@ -62,7 +62,7 @@ INSERT_UPDATE Passenger; uid[unique = true]; codeFiscal[unique = true]; name    
                        ; 29                ; CRLV55555E               ; CrystalMinichiello     ; 11.06.1928
                        ; 30                ; POMMIN6839               ; PompilioMorante        ; 03.12.1986
 
-INSERT_UPDATE Route; codeRoute[unique = true]; flight(codeFlight); dateRouteDep [dateformat = dd.MM.yyyy hh:mm:ss, allownull = true]; dateRouteArr[dateformat = dd.MM.yyyy hh:mm:ss, allownull = true]; crew(codeCrew); passenger(uid)[mode = append]
+INSERT_UPDATE Route; codeRoute[unique = true]; flight(codeFlight); dateRouteDep [dateformat = dd.MM.yyyy hh:mm:ss, allownull = true]; dateRouteArr[dateformat = dd.MM.yyyy hh:mm:ss, allownull = true]; crew(codeCrew); passenger(uid)[mode = append]; statusRoute(code)[default = 'OUTGOING'];
                    ; R1                      ; v1                ; 12.03.2018 12:12:12                                              ; 12.03.2018 16:12:12                                             ; CC1           ; 1, 2, 3
                    ; R2                      ; v2                ; 12.03.2018 15:10:15                                              ; 12.03.2018 18:30:35                                             ; CC2           ; 10, 11, 12
                    ; R3                      ; v3                ; 14.04.2018 16:05:00                                              ; 14.04.2018 22:15:00                                             ; CC1           ; 19
