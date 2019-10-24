@@ -6,10 +6,10 @@ import de.hybris.platform.jalo.SessionContext;
 import de.hybris.platform.jalo.type.ComposedType;
 import org.apache.log4j.Logger;
 
-public class ApparelStyleVariantProduct extends GeneratedApparelStyleVariantProduct
+public class DutyElectronicsProduct extends GeneratedDutyElectronicsProduct
 {
 	@SuppressWarnings("unused")
-	private static final Logger LOG = Logger.getLogger( ApparelStyleVariantProduct.class.getName() );
+	private static final Logger LOG = Logger.getLogger( DutyElectronicsProduct.class.getName() );
 	
 	@Override
 	protected Item createItem(final SessionContext ctx, final ComposedType type, final ItemAttributeMap allAttributes) throws JaloBusinessException

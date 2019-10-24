@@ -56,6 +56,16 @@
             <value code="DELETED"/>
         </enumtype>
 
+
+        <enumtype generate="true" code="tasteEnum" autocreate="true"
+                  dynamic="true">
+            <value code="SWEET"/>
+            <value code="SALAD"/>
+            <value code="BITTER"/>
+            <value code="SPICY"/>
+        </enumtype>
+
+
     </enumtypes>
 
     <relations>
@@ -94,8 +104,6 @@
     </relations>
     <itemtypes>
 
-
-        <!-- Add your item definitions here -->
 
 
         <typegroup name="AirportTypeGroup">
@@ -372,6 +380,57 @@
                 </attributes>
             </itemtype>
 
+            <itemtype code="DutyFoodsProduct" extends="Product"
+                      generate="true" autocreate="true"
+                      jaloclass="it.uiip.airport.core.jalo.DutyFoodProduct">
+                <attributes>
+                    <attribute qualifier="ingredients" type="java.lang.String">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="calories" type="java.lang.Integer">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="fat" type="java.lang.Integer">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="cholesterol" type="java.lang.Integer">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="sodium" type="java.lang.Integer">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="carbohydrate" type="java.lang.Integer">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="protein" type="java.lang.Integer">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="geographicalOrigin" type="java.lang.String">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="DutyFoodsVariantProduct" extends="VariantProduct"
+                      generate="true" autocreate="true"
+                      jaloclass="it.uiip.airport.core.jalo.DutyFoodVariantProduct">
+                <attributes>
+                    <attribute qualifier="taste" type="tasteEnum">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+
 
             <!-- DutyApparelProduct-->
 
@@ -397,9 +456,7 @@
                         <persistence type="property"/>
                     </attribute>
                 </attributes>
-
             </itemtype>
-
 
             <itemtype code="DutyApparelColorVariantProduct" extends="DutyApparelStyleVariantProduct"
                       autocreate="true" generate="true"
@@ -410,9 +467,7 @@
                         <persistence type="property"/>
                     </attribute>
                 </attributes>
-
             </itemtype>
-
 
             <itemtype code="DutyApparelSizeVariantProduct" extends="DutyApparelColorVariantProduct"
                       autocreate="true" generate="true"
@@ -424,7 +479,56 @@
                     </attribute>
                 </attributes>
             </itemtype>
+
+            <itemtype code="DutyElectronicsProduct" extends="Product"
+                      generate="true" autocreate="true"
+                      jaloclass="it.uiip.airport.core.jalo.DutyElectronicsProduct">
+                <attributes>
+                    <attribute qualifier="voltage" type="java.lang.Float">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="maximumCurrent" type="java.lang.Float">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="temperatureRange" type="java.lang.Float">
+
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            
+
+            <itemtype code="DutyElectronicsSizeVariant" extends="VariantProduct"
+                      generate="true" autocreate="true"
+                      jaloclass="it.uiip.airport.core.jalo.DutyElectronicsSizeVariant">
+                <attributes>
+                    <attribute qualifier="size" type="java.lang.Float">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+
+            </itemtype>
+
+
+            <itemtype code="DutyElectronicsWeightVariant" extends="DutyElectronicsSizeVariant"
+                      generate="true" autocreate="true"
+                      jaloclass="it.uiip.airport.core.jalo.DutyElectronicsWeightVariant">
+                <attributes>
+                    <attribute qualifier="weight" type="java.lang.Float">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
         </typegroup>
+
+
+        <!-- TypeGroups are for structure of this file only -->
 
 
         <typegroup name="Apparel">
