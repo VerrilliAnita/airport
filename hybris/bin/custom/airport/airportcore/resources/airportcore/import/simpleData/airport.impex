@@ -104,5 +104,3 @@ INSERT_UPDATE CabinCrew; uid[unique = true]; codeFiscal[unique = true]; name    
                        ; 19                ; MCHSHHH633               ; MichaelMinichiello ; 10.12.1918                                         ; CC2
                        ; 20                ; ALLAMM6383               ; AlessandroAmadori  ; 03.12.1986                                         ; CC2
 
-INSERT_UPDATE DutyFreeBaseStore; uid[unique=true];airport(codeAirport)
-                               ;DF1              ;AR1

@@ -248,7 +248,7 @@
 
 
             <itemtype code="Passenger" extends="User" generate="true" autocreate="true">
-                <deployment table="passenger" typecode="23000"/>
+                <deployment table="passenger" typecode="21349"/>
                 <attributes>
                     <attribute qualifier="codeFiscal" type="java.lang.String">
                         <persistence type="property"/>
@@ -332,7 +332,7 @@
 
         <typegroup name="DutyFree">
 
-            <itemtype code="DutyFreeBaseStore" extends="BaseStore" autocreate="true" generate="true">
+            <itemtype code="BaseStore"  autocreate="false" generate="false">
                 <attributes>
                     <attribute qualifier="airport" type="Airport">
                         <modifiers optional="false"/>
@@ -343,6 +343,22 @@
 
             <itemtype code="DutyCosmeticProduct" extends="Product" autocreate="true" generate="true"
                       jaloclass="it.uiip.airport.core.jalo.DutyCosmeticProduct">
+                <deployment table="dutyCosmeticProduct" typecode="21360"/>
+                <attributes>
+                    <attribute qualifier="genders" type="GenderList">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="ageRange" type="java.lang.String">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="DutyCosmeticVariantProduct" extends="VariantProduct" autocreate="true" generate="true"
+                      jaloclass="it.uiip.airport.core.jalo.DutyCosmeticVariantProduct">
+                <deployment table="dutyCosmeticVariant" typecode="21361"/>
                 <attributes>
                     <attribute qualifier="bodyApplication" type="java.lang.String">
                         <modifiers optional="false"/>
@@ -356,23 +372,10 @@
                         <modifiers optional="false"/>
                         <persistence type="property"/>
                     </attribute>
-                </attributes>
-            </itemtype>
-
-            <itemtype code="DutyCosmeticColorVariantProduct" extends="VariantProduct" autocreate="true" generate="true"
-                      jaloclass="it.uiip.airport.core.jalo.DutyCosmeticColorVariantProduct">
-                <attributes>
                     <attribute qualifier="color" type="SwatchColorSet">
                         <modifiers optional="false"/>
                         <persistence type="property"/>
                     </attribute>
-                </attributes>
-            </itemtype>
-
-            <itemtype code="DutyCosmeticFragranceVariantProduct" extends="VariantProduct" autocreate="true"
-                      generate="true"
-                      jaloclass="it.uiip.airport.core.jalo.DutyCosmeticColorVariantProduct">
-                <attributes>
                     <attribute qualifier="fragrance" type="java.lang.String">
                         <modifiers optional="false"/>
                         <persistence type="property"/>
@@ -380,35 +383,30 @@
                 </attributes>
             </itemtype>
 
+
             <itemtype code="DutyFoodsProduct" extends="Product"
                       generate="true" autocreate="true"
                       jaloclass="it.uiip.airport.core.jalo.DutyFoodProduct">
+                <deployment table="dutyFoodsProduct" typecode="21362"/>
+                <attributes>
+
+                    <attribute qualifier="taste" type="tasteEnum">
+                        <modifiers optional="false"/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="DutyFoodsVariantProduct" extends="VariantProduct"
+                      generate="true" autocreate="true"
+                      jaloclass="it.uiip.airport.core.jalo.DutyFoodVariantProduct">
+                <deployment table="dutyFoodsVariant" typecode="21363"/>
                 <attributes>
                     <attribute qualifier="ingredients" type="java.lang.String">
                         <modifiers optional="false"/>
                         <persistence type="property"/>
                     </attribute>
                     <attribute qualifier="calories" type="java.lang.Integer">
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                    <attribute qualifier="fat" type="java.lang.Integer">
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                    <attribute qualifier="cholesterol" type="java.lang.Integer">
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                    <attribute qualifier="sodium" type="java.lang.Integer">
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                    <attribute qualifier="carbohydrate" type="java.lang.Integer">
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                    <attribute qualifier="protein" type="java.lang.Integer">
                         <modifiers optional="false"/>
                         <persistence type="property"/>
                     </attribute>
@@ -419,18 +417,6 @@
                 </attributes>
             </itemtype>
 
-            <itemtype code="DutyFoodsVariantProduct" extends="VariantProduct"
-                      generate="true" autocreate="true"
-                      jaloclass="it.uiip.airport.core.jalo.DutyFoodVariantProduct">
-                <attributes>
-                    <attribute qualifier="taste" type="tasteEnum">
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
-
-
 
             <!-- DutyApparelProduct-->
 
@@ -438,6 +424,7 @@
             <itemtype code="DutyApparelProduct" extends="Product"
                       autocreate="true" generate="true"
                       jaloclass="it.uiip.airport.core.jalo.DutyApparelProduct">
+                <deployment table="dutyApparelProduct" typecode="21364"/>
                 <attributes>
                     <attribute qualifier="genders" type="GenderList">
                         <modifiers optional="false"/>
@@ -450,6 +437,7 @@
             <itemtype code="DutyApparelStyleVariantProduct" extends="VariantProduct"
                       autocreate="true" generate="true"
                       jaloclass="it.uiip.airport.core.jalo.DutyApparelStyleVariantProduct">
+                <deployment table="dutyApparelStyleVariant" typecode="21365"/>
                 <attributes>
                     <attribute qualifier="style" type="localized:java.lang.String">
                         <modifiers optional="false"/>
@@ -461,6 +449,7 @@
             <itemtype code="DutyApparelColorVariantProduct" extends="DutyApparelStyleVariantProduct"
                       autocreate="true" generate="true"
                       jaloclass="it.uiip.airport.core.jalo.DutyApparelColorVariantProduct">
+                <deployment table="dutyApparelColorVariant" typecode="21366"/>
                 <attributes>
                     <attribute qualifier="color" type="SwatchColorSet">
                         <modifiers optional="false"/>
@@ -472,54 +461,9 @@
             <itemtype code="DutyApparelSizeVariantProduct" extends="DutyApparelColorVariantProduct"
                       autocreate="true" generate="true"
                       jaloclass="it.uiip.airport.core.jalo.DutyApparelSizeVariantProduct">
+                <deployment table="dutyApparelSizeVariant" typecode="21367"/>
                 <attributes>
                     <attribute qualifier="size" type="localized:java.lang.String">
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
-
-            <itemtype code="DutyElectronicsProduct" extends="Product"
-                      generate="true" autocreate="true"
-                      jaloclass="it.uiip.airport.core.jalo.DutyElectronicsProduct">
-                <attributes>
-                    <attribute qualifier="voltage" type="java.lang.Float">
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                    <attribute qualifier="maximumCurrent" type="java.lang.Float">
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                    <attribute qualifier="temperatureRange" type="java.lang.Float">
-
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-            </itemtype>
-
-            
-
-            <itemtype code="DutyElectronicsSizeVariant" extends="VariantProduct"
-                      generate="true" autocreate="true"
-                      jaloclass="it.uiip.airport.core.jalo.DutyElectronicsSizeVariant">
-                <attributes>
-                    <attribute qualifier="size" type="java.lang.Float">
-                        <modifiers optional="false"/>
-                        <persistence type="property"/>
-                    </attribute>
-                </attributes>
-
-            </itemtype>
-
-
-            <itemtype code="DutyElectronicsWeightVariant" extends="DutyElectronicsSizeVariant"
-                      generate="true" autocreate="true"
-                      jaloclass="it.uiip.airport.core.jalo.DutyElectronicsWeightVariant">
-                <attributes>
-                    <attribute qualifier="weight" type="java.lang.Float">
                         <modifiers optional="false"/>
                         <persistence type="property"/>
                     </attribute>
