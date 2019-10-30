@@ -1,0 +1,58 @@
+$productCatalog=airportProductCatalog
+$productCatalogName=airport product catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
+$approved=approvalstatus(code)[default='check']
+
+#PRODUCTS
+#FOOD -> SNACK -> DutyFoodsProduct
+INSERT_UPDATE DutyFoodsProduct;code[unique=true];$catalogVersion;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;ean;name;taste(code)
+    ;BI1;;pieces;Snack;DutyFoodsVariantProduct;;2022436212;Loacker Wafer;SWEET
+    ;BI2;;pieces;Snack;DutyFoodsVariantProduct;;2122436213;Gran Pavesi Cracker;SALAD
+    ;SN1;;pieces;Snack;DutyFoodsVariantProduct;;2122436213;Pringles;SALAD
+
+#FOOD -> BEVERAGE -> DutyFoodsProduct
+INSERT_UPDATE DutyFoodsProduct;code[unique=true];$catalogVersion;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;ean;name;taste(code)
+    ;BE3;;pieces;Beverage;DutyFoodsVariantProduct;;4652436236;NESCAFÉ Coffee;SWEET
+    ;BE4;;pieces;Beverage;DutyFoodsVariantProduct;;4652436236;Caffè Borbone;SWEET
+    ;BE5;;pieces;Beverage;DutyFoodsVariantProduct;;4652436236;Lavazza Coffee;SWEET
+    ;BE6;;pieces;Beverage;DutyFoodsVariantProduct;;1622436871;Yorkshire Tea;SWEET
+
+#FOOD -> PASTA -> DutyFoodsProduct
+INSERT_UPDATE DutyFoodsProduct;code[unique=true];$catalogVersion;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;ean;name;taste(code)
+    ;PA1;;pieces;Pasta;DutyFoodsVariantProduct;;3652756236;Napolina Pasta;SWEET
+    ;PA2;;pieces;Pasta;DutyFoodsVariantProduct;;3652756888;Barilla Pasta;SWEET
+    ;PA3;;pieces;Pasta;DutyFoodsVariantProduct;;3652756112;Garofalo Pasta;SWEET
+
+#VARIANTS
+#FOOD -> SNACK -> DutyFoodsVariantProduct
+INSERT_UPDATE DutyFoodsVariantProduct;code[unique=true];$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);$approved;$catalogVersion;ingredients;calories;geographicalOrigin;weight;name
+    ;BI1L1;BI1;2022436213;pieces;;;;farina di frumento, olio di cocco, sciroppo di glucosio, zucchero, nocciole, siero di latte in polvere, farina di soia, latte scremato in polvere, cacao magro, destrosio, estratto di malto d'orzo;503; Austria (Bolzano); 175 gr.;Loacker Wafer con Crema alla Nocciola
+    ;BI1L2;BI1;2022436227;pieces;;;;farina di frumento, olio di cocco, sciroppo di glucosio, zucchero, cacao magro, destrosio, siero di latte in polvere, cioccolato, farina di soia, latte scremato in polvere, estratto di malto d'orzo, nocciole, agenti lievitanti;511; Austria (Bolzano); 45 gr.;Loacker Wafer Multi Cremkakao
+    ;BI2G1;BI2;2122437221;pieces;;;;Farina di frumento, farina di orzo maltato, lievito e sale;138; Novara; 560 gr.;Gran Pavesi Cracker Salati I Classici
+    ;BI2G2;BI2;8122499221;pieces;;;;Farina di frumento, farina di mais, olio di soia, glutine di frumento, pomodoro disidratato, lievito, estratto di malto d'ORZO e mais, sale, aroma, carbonato acido di sodio, piante aromatiche, farina di ORZO maltato;240;Novara;280 gr.;Pavesi Cracker Tomatoe
+    ;SN1P1;SN1;1645499221;pieces;;;;Degerminated yellow corn flour, vegetable oil, corn masa, maltodextrin, dried black beans, sugar;500;USA;220 gr.;Pringles Tortilla Sour Cream and Onion Crisps
+    ;SN1P2;SN1;1645499222;pieces;;;;Dehydrated Potatoes, Vegetable Oils, Rice Flour, WHEAT Starch, Corn Flour, Emulsifier (E471), Maltodextrin, Salt, Yeast Extract, Yeast Powder, Colour (Annatto);300;USA;200 gr.;Pringles Original Potato Crisps 200 g
+    ;SN1P3;SN1;1645499222;pieces;;;;Corn Flour, Vegetable Oils, Barbecue Seasoning, Rusk Powder, Flavouring, Flavour Enhancers, Tomato Powder, Onion Powder, Garlic Powder, Colour, Acids, Maltodextrin, Emulsifier , Sugar, Black Bean Powder, Salt, Acidity Regulator, WHEAT Dextrose;500;USA;200 gr.;Pringles BBQ Potato Snack 200 g
+
+
+#FOOD -> BEVERAGE -> DutyFoodsVariantProduct
+INSERT_UPDATE DutyFoodsVariantProduct;code[unique=true];$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);$approved;$catalogVersion;ingredients;calories;geographicalOrigin;weight;name
+    ;BE3N1;BE3;8122499451;pieces;;;;Soluble Coffee from Coffee Beans;2;Switzerland;1 kg.;NESCAFÉ Original Coffee 1 kg
+    ;BE3N2;BE3;745259451;pieces;;;;Soluble Coffee from Coffee Beans;2;Switzerland;750 g.;Nescafé Gold Blend Instant Coffee Tin, 750 g
+    ;BE4N3;BE4;776459451;pieces;;;;Soluble Coffee from Coffee Beans;2;Italy;500 g.;Caffè Borbone Respresso Compatibile Nespresso Miscela Blu Confezione da 100 Capsule
+    ;BE5L1;BE5;316459451;pieces;;;;Soluble Coffee from Coffee Beans;2;Italy;2 kg.;Lavazza Qualita Rossa Coffee Beans 2kg
+    ;BE5L2;BE5;316859412;pieces;;;;Soluble Coffee from Coffee Beans;2;Italy;4 kg.;Lavazza Qualita Rossa Coffee Beans 4kg
+    ;BE6Y1;BE6;311251229;pieces;;;;Tea leaves;1;United Kingdom;2 kg.;Yorkshire Tea Bags 480
+    ;BE6Y2;BE6;512251124;pieces;;;;Tea leaves;1;United Kingdom;1 kg.;Yorkshire Tea Bags 240
+
+#FOOD -> PASTA -> DutyFoodsVariantProduct
+INSERT_UPDATE DutyFoodsVariantProduct;code[unique=true];$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);$approved;$catalogVersion;ingredients;calories;geographicalOrigin;weight;name
+    ;PA1N1;PA1;2022437536;pieces;;;;Durum WHEAT Semolina;300; United Kingdom; 500 gr.;Napolina Penne Pasta 500g
+    ;PA1N2;PA1;2142457512;pieces;;;;Durum WHEAT Semolina;300; United Kingdom; 1 kg.;Napolina Penne Pasta 1 kg
+    ;PA2B1;PA2;2142497599;pieces;;;;Durum WHEAT Semolina;300; Italy; 400 g.;Barilla Penne Pasta 400 g
+    ;PA2B2;PA2;2142492594;pieces;;;;Durum WHEAT Semolina;300; Italy; 1 kg.;Barilla Penne Pasta 1 kg
+    ;PA3G1;PA3;3412492594;pieces;;;;Durum WHEAT Semolina;300; Italy; 500 g.;Garofalo Gluten Free Penne 500 g
+    ;PA3G2;PA3;3412497463;pieces;;;;Durum WHEAT Semolina;300; Italy; 1 kg.;Garofalo Gluten Free Penne 1 kg
+

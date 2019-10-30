@@ -1,0 +1,32 @@
+# Macros / Replacement Parameter definitions
+
+$productCatalog=airportProductCatalog
+$productCatalogName=airport product catalog
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])
+$supercategories=source(code, $catalogVersion)[unique=true]
+$categories=target(code, $catalogVersion)[unique=true]
+
+
+
+INSERT_UPDATE Category;code[unique=true];$catalogVersion;supercategories(code,$catalogVersion);allowedPrincipals(uid)[default='customergroup']
+                      ;Cosmetic;;
+                      ;MakeUp;;Cosmetic
+                      ;Cream;;Cosmetic
+                      ;Perfume;;Cosmetic
+                      ;Foundation;;Cosmetic
+
+INSERT_UPDATE Category;code[unique=true];$catalogVersion;supercategories(code,$catalogVersion);allowedPrincipals(uid)[default='customergroup']
+                      ;Grocery;;
+                      ;Food;;Grocery
+                      ;Beverage;;Grocery
+                      ;Snack;;Food
+                      ;Pasta;;Food
+
+
+INSERT_UPDATE Category;code[unique=true];$catalogVersion;supercategories(code,$catalogVersion);allowedPrincipals(uid)[default='customergroup']
+                      ;Apparel;;
+                      ;Jackets;;Apparel
+                      ;T-Shirts;;Apparel
+                      ;Jeans;;Apparel
+                      ;Skirts;;Apparel
+
