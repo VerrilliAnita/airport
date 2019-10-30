@@ -1,6 +1,5 @@
 $productCatalog=airportProductCatalog
 $productCatalogName=airport product catalog
-
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $supercategories=source(code, $catalogVersion)[unique=true]
 $baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
@@ -8,30 +7,48 @@ $approved=approvalstatus(code)[default='check']
 
 
 
+#PRODUCTS
+
+#APPAREL -> T-SHIRTS -> DutyApparelProduct
 INSERT_UPDATE DutyApparelProduct;code[unique=true];$catalogVersion;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;ean;genders(code);name;
                                 ;TSH1;;pieces;T-Shirts;DutyApparelStyleVariantProduct;;1032445300;MALE;The North Face Men Simple Dome Short Sleeved T-Shirt
                                 ;TSH2;;pieces;T-Shirts;DutyApparelStyleVariantProduct;;1032445330;MALE;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt
+
+
+#APPAREL -> JACKETS -> DutyApparelProduct
+INSERT_UPDATE DutyApparelProduct;code[unique=true];$catalogVersion;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;ean;genders(code);name;
                                 ;JK1;;pieces;Jackets;DutyApparelStyleVariantProduct;;1032446300;MALE;Berghaus Men's Kamloops Hooded Fleece Jacket
                                 ;JK2;;pieces;Jackets;DutyApparelStyleVariantProduct;;1032446350;FEMALE;Craghoppers Women's Emley Jacket
 
+
+#APPAREL -> JEANS -> DutyApparelProduct
+INSERT_UPDATE DutyApparelProduct;code[unique=true];$catalogVersion;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;ean;genders(code);name;
+                                ;JS1;;pieces;Jeans;DutyApparelStyleVariantProduct;;7846445301;FEMALE;Levi's Women
+                                ;JS2;;pieces;Jeans;DutyApparelStyleVariantProduct;;7846445302;FEMALE;Made By Malaika Ladies
+
+
+#APPAREL -> SKIRTS -> DutyApparelProduct
+INSERT_UPDATE DutyApparelProduct;code[unique=true];$catalogVersion;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;ean;genders(code);name;
+                                ;SK1;;pieces;Skirts;DutyApparelStyleVariantProduct;;7846445915;FEMALE;Hoerev Women
+                                ;SK2;;pieces;Skirts;DutyApparelStyleVariantProduct;;7846445916;FEMALE;Urban CoCo Women
+#VARIANTS
+
+#APPAREL -> T-SHIRT> DutyApparelStyleVariantProduct
 INSERT_UPDATE DutyApparelStyleVariantProduct;code[unique=true];name;$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;style
                                             ;THS1S1;The North Face Men Simple Dome Short Sleeved T-Shirt Regular Fit;TSH1;1032445301;pieces;;DutyApparelColorVariantProduct;;;Regular Fit
                                             ;THS1S2;The North Face Men Simple Dome Short Sleeved T-Shirt Slim Fit;TSH1;1032445302;pieces;;DutyApparelColorVariantProduct;;;Slim Fit
                                             ;THS2S1;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Regular Fit;TSH2;1032445331;pieces;;DutyApparelColorVariantProduct;;;Regular Fit
                                             ;THS2S2;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Slim Fit;TSH2;1032445332;pieces;;DutyApparelColorVariantProduct;;;Slim Fit
-                                            ;JK1S1;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson;JK1;1032446301;pieces;;DutyApparelColorVariantProduct;;;;Blouson
-                                            ;JK2S1;Craghoppers Women's Emley Jacket Parka;JK2;1032446361;pieces;;DutyApparelColorVariantProduct;;;;Parka
 
+#APPAREL -> T-SHIRT> DutyApparelColorVariantProduct
 INSERT_UPDATE DutyApparelColorVariantProduct;code[unique=true];name;$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;color(code)
                                             ;THS1S1C1;The North Face Men Simple Dome Short Sleeved T-Shirt Regular Fit Black;THS1S1;1032445321;pieces;;DutyApparelSizeVariantProduct;;;BLACK
                                             ;THS1S2C2;The North Face Men Simple Dome Short Sleeved T-Shirt Slim Fit Red;THS1S2;1032445322;pieces;;DutyApparelSizeVariantProduct;;;RED
                                             ;THS2S1C1;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Regular Fit Black;THS2S1;1032445351;pieces;;DutyApparelSizeVariantProduct;;;BLACK
                                             ;THS2S2C2;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Slim Fit Red;THS2S1;1032445351;pieces;;DutyApparelSizeVariantProduct;;;RED
-                                            ;JK1S1C1;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson Brown;JK1S1;1032446331;pieces;;DutyApparelSizeVariantProduct;;;BROWN
-                                            ;JK1S1C2;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson Blue;JK1S1;103244632;pieces;;DutyApparelSizeVariantProduct;;;BLUE
-                                            ;JK2S1C1;Craghoppers Women's Emley Jacket Parka Grey;JK2S1;1032446362;pieces;;DutyApparelSizeVariantProduct;;;GREY
-                                            ;JK2S1C2;Craghoppers Women's Emley Jacket Parka Yellow;JK2S1;1032446363;pieces;;DutyApparelSizeVariantProduct;;;YELLOW
 
+
+#APPAREL -> T-SHIRT> DutyApparelSizeVariantProduct
 INSERT_UPDATE DutyApparelSizeVariantProduct;code[unique=true];name;$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;size
                                            ;THS1S1C1M;The North Face Men Simple Dome Short Sleeved T-Shirt Regular Fit Black M;THS1S1C1;1032445341;pieces;;;;;M
                                            ;THS1S1C1L;The North Face Men Simple Dome Short Sleeved T-Shirt Regular Fit Black L;THS1S2C2;1032445342;pieces;;;;;L
@@ -41,7 +58,84 @@ INSERT_UPDATE DutyApparelSizeVariantProduct;code[unique=true];name;$baseProduct;
                                            ;THS2S1C1L;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Slim Fit Black L;THS1S2C2;1032445362;pieces;;;;;L
                                            ;THS2S2C1M;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Regular Fit Black M;THS1S1C1;1032445363;pieces;;;;;M
                                            ;THS2S2C2L;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Slim Fit Red L;THS1S2C2;1032445364;pieces;;;;;L
+
+#APPAREL -> JACKETS> DutyApparelStyleVariantProduct
+INSERT_UPDATE DutyApparelStyleVariantProduct;code[unique=true];name;$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;style
+                                            ;JK1S1;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson;JK1;1032446301;pieces;;DutyApparelColorVariantProduct;;;;Blouson
+                                            ;JK2S1;Craghoppers Women's Emley Jacket Parka;JK2;1032446361;pieces;;DutyApparelColorVariantProduct;;;;Parka
+
+
+#APPAREL -> JACKETS> DutyApparelColorVariantProduct
+INSERT_UPDATE DutyApparelColorVariantProduct;code[unique=true];name;$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;color(code)
+                                            ;JK1S1C1;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson Brown;JK1S1;1032446331;pieces;;DutyApparelSizeVariantProduct;;;BROWN
+                                            ;JK1S1C2;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson Blue;JK1S1;103244632;pieces;;DutyApparelSizeVariantProduct;;;BLUE
+                                            ;JK2S1C1;Craghoppers Women's Emley Jacket Parka Grey;JK2S1;1032446362;pieces;;DutyApparelSizeVariantProduct;;;GREY
+                                            ;JK2S1C2;Craghoppers Women's Emley Jacket Parka Yellow;JK2S1;1032446363;pieces;;DutyApparelSizeVariantProduct;;;YELLOW
+
+#APPAREL -> JACKETS> DutyApparelSizeVariantProduct
+INSERT_UPDATE DutyApparelSizeVariantProduct;code[unique=true];name;$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;size
                                            ;JK1S1C1S;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson Brown S;JK1S1;1032446344;pieces;;;;;S
                                            ;JK1S1C2XL;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson Blue XL;JK1S1;1032446353;pieces;;;;;XL
                                            ;JK2S1C1S;Craghoppers Women's Emley Jacket Parka Grey S;JK2S1;1032446362;pieces;;DutyApparelSizeVariantProduct;;;S
                                            ;JK2S1C2M;Craghoppers Women's Emley Jacket Parka Yellow M;JK2S1;1032446363;pieces;;DutyApparelSizeVariantProduct;;;M
+
+
+
+
+#APPAREL -> JEANS -> DutyApparelStyleVariantProduct
+INSERT_UPDATE DutyApparelStyleVariantProduct;code[unique=true];$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;style;name
+                                            ;JS1S1;JS1;321445301;pieces;;DutyApparelColorVariantProduct;;;Skinny Fit;Trespass Levi's Women's 312 Skinny Jeans
+                                            ;JS1S2;JS1;321445301;pieces;;DutyApparelColorVariantProduct;;;Shaping Slim;Levi's Women's 312 Shaping Slim Jeans
+                                            ;JS2S1;JS2;321445301;pieces;;DutyApparelColorVariantProduct;;;Skinny Fit;Made By Malaika Ladies Skinny Fit
+                                            ;JS2S2;JS2;321445301;pieces;;DutyApparelColorVariantProduct;;;Shaping Slim;Made By Malaika Ladies Shaping Slim
+
+#APPAREL -> JEANS -> DutyApparelColorVariantProduct
+INSERT_UPDATE DutyApparelColorVariantProduct;code[unique=true];$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;color(code);name
+                                            ;JS1S1C1;JS1S1;1032445327;pieces;;DutyApparelSizeVariantProduct;;;BLUE;Levi's Women's 312 Skinny Jeans Blue
+                                            ;JS1S1C2;JS1S1;1032445328;pieces;;DutyApparelSizeVariantProduct;;;BLACK;Levi's Women's 312 Skinny Jeans Black
+                                            ;JS1S1C3;JS1S1;1032445329;pieces;;DutyApparelSizeVariantProduct;;;BROWN;Levi's Women's 312 Skinny Jeans Brown
+                                            ;JS1S2C1;JS1S2;1032445321;pieces;;DutyApparelSizeVariantProduct;;;BLUE;Levi's Women's 312 Shaping Slim Jeans Blue
+                                            ;JS1S2C2;JS1S2;1032445322;pieces;;DutyApparelSizeVariantProduct;;;BLACK;Levi's Women's 312 Shaping Slim Jeans Black
+                                            ;JS1S2C3;JS1S2;1032445323;pieces;;DutyApparelSizeVariantProduct;;;BROWN;Levi's Women's 312 Shaping Slim Jeans Brown
+                                            ;JS2S1C1;JS2S1;1032445324;pieces;;DutyApparelSizeVariantProduct;;;BLUE;Made By Malaika Ladies Skinny Fit Blue
+                                            ;JS2S2C2;JS2S2;1032445325;pieces;;DutyApparelSizeVariantProduct;;;BLUE;Made By Malaika Ladies Shaping Slim Blue
+
+#APPAREL -> JEANS -> DutyApparelSizeVariantProduct
+INSERT_UPDATE DutyApparelSizeVariantProduct;code[unique=true];$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;size;name
+                                            ;JS1S1C1S1;JS1S1C1;1032445341;pieces;;;;;30L;Levi's Women's 312 Skinny Jeans Blue 30 L
+                                            ;JS1S1C1S2;JS1S1C1;1032445342;pieces;;;;;32L;Levi's Women's 312 Skinny Jeans Blue 32 L
+                                            ;JS1S1C1S3;JS1S1C1;1032445343;pieces;;;;;34L;Levi's Women's 312 Skinny Jeans Blue 34 L
+                                            ;JS1S1C2S1;JS1S1C2;1032445344;pieces;;;;;30L;Levi's Women's 312 Skinny Jeans Black 30 L
+                                            ;JS1S1C2S2;JS1S1C2;1032445345;pieces;;;;;32L;Levi's Women's 312 Skinny Jeans Black 32 L
+                                            ;JS1S1C2S3;JS1S1C2;1032445346;pieces;;;;;34L;Levi's Women's 312 Skinny Jeans Black 34 L
+                                            ;JS1S1C3S1;JS1S1C3;1032445347;pieces;;;;;30L;Levi's Women's 312 Skinny Jeans Brown 30 L
+                                            ;JS1S1C3S2;JS1S1C3;1032445348;pieces;;;;;32L;Levi's Women's 312 Skinny Jeans Brown 32 L
+                                            ;JS1S1C3S3;JS1S1C3;1032445349;pieces;;;;;34L;Levi's Women's 312 Skinny Jeans Brown 34 L
+                                            ;JS1S2C1S1;JS1S2C1;1032445350;pieces;;;;;30L;Levi's Women's 312 Shaping Slim Jeans Blue 30 L
+                                            ;JS1S2C1S2;JS1S2C1;1032445351;pieces;;;;;32L;Levi's Women's 312 Shaping Slim Jeans Blue 32 L
+                                            ;JS1S2C1S3;JS1S2C1;1032445352;pieces;;;;;34L;Levi's Women's 312 Shaping Slim Jeans Blue 34 L
+                                            ;JS2S1C1S1;JS2S1C1;1032445355;pieces;;;;;30L;Made By Malaika Ladies Skinny Fit Blue 30 L
+                                            ;JS2S1C1S2;JS2S1C1;1032445355;pieces;;;;;32L;Made By Malaika Ladies Skinny Fit Blue 32 L
+                                            ;JS2S2C2S2;JS2S2C2;1032445355;pieces;;;;;32L;Made By Malaika Ladies Shaping Slim Blue 32 L
+
+#APPAREL -> SKIRTS -> DutyApparelStyleVariantProduct
+INSERT_UPDATE DutyApparelStyleVariantProduct;code[unique=true];$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;style;name
+                                            ;SK1S1;SK1;321445341;pieces;;DutyApparelColorVariantProduct;;;Short High;Hoerev Women Girls Short High
+                                            ;SK2S1;SK2;321445342;pieces;;DutyApparelColorVariantProduct;;;Basic Solid;Urban CoCo Women's Basic Solid
+
+#APPAREL -> SKIRTS -> DutyApparelColorVariantProduct
+INSERT_UPDATE DutyApparelColorVariantProduct;code[unique=true];$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;color(code);name
+                                            ;SK1S1C1;SK1S1;1032445331;pieces;;DutyApparelSizeVariantProduct;;;BLUE;Hoerev Women Girls Short High Blue
+                                            ;SK1S1C2;SK1S1;1032445332;pieces;;DutyApparelSizeVariantProduct;;;BLACK;Hoerev Women Girls Short High Black
+                                            ;SK2S1C1;SK2S1;1032445333;pieces;;DutyApparelSizeVariantProduct;;;BLUE;Urban CoCo Women's Basic Solid Blue
+                                            ;SK2S1C2;SK2S1;1032445333;pieces;;DutyApparelSizeVariantProduct;;;BLACK;Urban CoCo Women's Basic Solid Black
+
+#APPAREL -> SKIRTS -> DutyApparelSizeVariantProduct
+INSERT_UPDATE DutyApparelSizeVariantProduct;code[unique=true];$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;size;name
+                                           ;SK1S1C1S1;SK1S1C1;10324885321;pieces;;;;;10;Hoerev Women Girls Short High Blue 10
+                                           ;SK1S1C2S1;SK1S1C2;10324885322;pieces;;;;;10;Hoerev Women Girls Short High Black 10
+                                           ;SK2S1C1S1;SK2S1C1;10324885323;pieces;;;;;9;Urban CoCo Women's Basic Solid Blue 9
+                                           ;SK2S1C2S1;SK2S1C2;10324885324;pieces;;;;;9;Urban CoCo Women's Basic Solid Black 9
+                                           ;SK2S1C2S2;SK2S1C2;10324885324;pieces;;;;;10;Urban CoCo Women's Basic Solid Black 10
+
+

@@ -14,6 +14,8 @@
                         autocreate="true" generate="true" type="list"/>
         <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum"
                         autocreate="true" generate="true" type="set"/>
+        <collectiontype code="IngredientList" elementtype="java.lang.String"
+                        autocreate="true" generate="true" type="list"/>
     </collectiontypes>
 
     <enumtypes>
@@ -371,6 +373,7 @@
                         <persistence type="property"/>
                     </attribute>
                     <attribute qualifier="ingredients" type="IngredientList">
+
                         <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
@@ -413,15 +416,19 @@
                 <deployment table="dutyFoodsVariant" typecode="21363"/>
                 <attributes>
                     <attribute qualifier="ingredients" type="IngredientList">
-                        <modifiers optional="false"/>
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
                     <attribute qualifier="calories" type="java.lang.Integer">
-                        <modifiers optional="false"/>
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
                     <attribute qualifier="geographicalOrigin" type="java.lang.String">
-                        <modifiers optional="false"/>
+                        <modifiers optional="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="weight" type="java.lang.String">
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
                 </attributes>
