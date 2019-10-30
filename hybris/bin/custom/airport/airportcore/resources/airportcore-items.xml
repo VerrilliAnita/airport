@@ -10,6 +10,8 @@
     <collectiontypes>
         <collectiontype code="GenderList" elementtype="Gender"
                         autocreate="true" generate="true" type="list"/>
+        <collectiontype code="IngredientList" elementtype="java.lang.String"
+                        autocreate="true" generate="true" type="list"/>
         <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum"
                         autocreate="true" generate="true" type="set"/>
     </collectiontypes>
@@ -29,6 +31,10 @@
             <value code="SILVER"/>
             <value code="WHITE"/>
             <value code="YELLOW"/>
+            <value code="BEIGE"/>
+            <value code="IVORY"/>
+            <value code="NATURAL"/>
+            <value code="BRONZE"/>
         </enumtype>
 
 
@@ -289,19 +295,19 @@
                 <deployment table="cabinCrew" typecode="21352"/>
                 <attributes>
                     <attribute qualifier="codeFiscal" type="java.lang.String">
-                        <persistence type="property"></persistence>
+                        <persistence type="property"/>
                         <modifiers optional="false"/>
                     </attribute>
                     <attribute qualifier="birthday" type="java.util.Date">
-                        <persistence type="property"></persistence>
+                        <persistence type="property"/>
                         <modifiers optional="true"/>
                     </attribute>
                     <attribute qualifier="age" type="java.lang.Integer">
-                        <persistence type="dynamic" attributeHandler="ageCabinCrewHandler"></persistence>
+                        <persistence type="dynamic" attributeHandler="ageCabinCrewHandler"/>
                         <modifiers write="false"/>
                     </attribute>
                     <attribute qualifier="isBest" type="java.lang.Boolean">
-                        <persistence type="property"></persistence>
+                        <persistence type="property"/>
                         <modifiers optional="true"/>
                     </attribute>
                 </attributes>
@@ -361,23 +367,27 @@
                 <deployment table="dutyCosmeticVariant" typecode="21361"/>
                 <attributes>
                     <attribute qualifier="bodyApplication" type="java.lang.String">
-                        <modifiers optional="false"/>
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
-                    <attribute qualifier="ingredients" type="java.lang.String">
-                        <modifiers optional="false"/>
+                    <attribute qualifier="ingredients" type="IngredientList">
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
                     <attribute qualifier="composition" type="java.lang.String">
-                        <modifiers optional="false"/>
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
                     <attribute qualifier="color" type="SwatchColorSet">
-                        <modifiers optional="false"/>
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
                     <attribute qualifier="fragrance" type="java.lang.String">
-                        <modifiers optional="false"/>
+                        <modifiers optional="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="size" type="java.lang.String">
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
                 </attributes>
@@ -402,7 +412,7 @@
                       jaloclass="it.uiip.airport.core.jalo.DutyFoodVariantProduct">
                 <deployment table="dutyFoodsVariant" typecode="21363"/>
                 <attributes>
-                    <attribute qualifier="ingredients" type="java.lang.String">
+                    <attribute qualifier="ingredients" type="IngredientList">
                         <modifiers optional="false"/>
                         <persistence type="property"/>
                     </attribute>
@@ -440,7 +450,7 @@
                 <deployment table="dutyApparelStyleVariant" typecode="21365"/>
                 <attributes>
                     <attribute qualifier="style" type="localized:java.lang.String">
-                        <modifiers optional="false"/>
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
                 </attributes>
@@ -452,7 +462,7 @@
                 <deployment table="dutyApparelColorVariant" typecode="21366"/>
                 <attributes>
                     <attribute qualifier="color" type="SwatchColorSet">
-                        <modifiers optional="false"/>
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
                 </attributes>
@@ -464,7 +474,7 @@
                 <deployment table="dutyApparelSizeVariant" typecode="21367"/>
                 <attributes>
                     <attribute qualifier="size" type="localized:java.lang.String">
-                        <modifiers optional="false"/>
+                        <modifiers optional="true"/>
                         <persistence type="property"/>
                     </attribute>
                 </attributes>

@@ -1,0 +1,47 @@
+$productCatalog=airportProductCatalog
+$productCatalogName=airport product catalog
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
+$approved=approvalstatus(code)[default='check']
+
+
+
+INSERT_UPDATE DutyApparelProduct;code[unique=true];$catalogVersion;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;ean;genders(code);name;
+                                ;TSH1;;pieces;T-Shirts;DutyApparelStyleVariantProduct;;1032445300;MALE;The North Face Men Simple Dome Short Sleeved T-Shirt
+                                ;TSH2;;pieces;T-Shirts;DutyApparelStyleVariantProduct;;1032445330;MALE;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt
+                                ;JK1;;pieces;Jackets;DutyApparelStyleVariantProduct;;1032446300;MALE;Berghaus Men's Kamloops Hooded Fleece Jacket
+                                ;JK2;;pieces;Jackets;DutyApparelStyleVariantProduct;;1032446350;FEMALE;Craghoppers Women's Emley Jacket
+
+INSERT_UPDATE DutyApparelStyleVariantProduct;code[unique=true];name;$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;style
+                                            ;THS1S1;The North Face Men Simple Dome Short Sleeved T-Shirt Regular Fit;TSH1;1032445301;pieces;;DutyApparelColorVariantProduct;;;Regular Fit
+                                            ;THS1S2;The North Face Men Simple Dome Short Sleeved T-Shirt Slim Fit;TSH1;1032445302;pieces;;DutyApparelColorVariantProduct;;;Slim Fit
+                                            ;THS2S1;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Regular Fit;TSH2;1032445331;pieces;;DutyApparelColorVariantProduct;;;Regular Fit
+                                            ;THS2S2;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Slim Fit;TSH2;1032445332;pieces;;DutyApparelColorVariantProduct;;;Slim Fit
+                                            ;JK1S1;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson;JK1;1032446301;pieces;;DutyApparelColorVariantProduct;;;;Blouson
+                                            ;JK2S1;Craghoppers Women's Emley Jacket Parka;JK2;1032446361;pieces;;DutyApparelColorVariantProduct;;;;Parka
+
+INSERT_UPDATE DutyApparelColorVariantProduct;code[unique=true];name;$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;color(code)
+                                            ;THS1S1C1;The North Face Men Simple Dome Short Sleeved T-Shirt Regular Fit Black;THS1S1;1032445321;pieces;;DutyApparelSizeVariantProduct;;;BLACK
+                                            ;THS1S2C2;The North Face Men Simple Dome Short Sleeved T-Shirt Slim Fit Red;THS1S2;1032445322;pieces;;DutyApparelSizeVariantProduct;;;RED
+                                            ;THS2S1C1;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Regular Fit Black;THS2S1;1032445351;pieces;;DutyApparelSizeVariantProduct;;;BLACK
+                                            ;THS2S2C2;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Slim Fit Red;THS2S1;1032445351;pieces;;DutyApparelSizeVariantProduct;;;RED
+                                            ;JK1S1C1;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson Brown;JK1S1;1032446331;pieces;;DutyApparelSizeVariantProduct;;;BROWN
+                                            ;JK1S1C2;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson Blue;JK1S1;103244632;pieces;;DutyApparelSizeVariantProduct;;;BLUE
+                                            ;JK2S1C1;Craghoppers Women's Emley Jacket Parka Grey;JK2S1;1032446362;pieces;;DutyApparelSizeVariantProduct;;;GREY
+                                            ;JK2S1C2;Craghoppers Women's Emley Jacket Parka Yellow;JK2S1;1032446363;pieces;;DutyApparelSizeVariantProduct;;;YELLOW
+
+INSERT_UPDATE DutyApparelSizeVariantProduct;code[unique=true];name;$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;size
+                                           ;THS1S1C1M;The North Face Men Simple Dome Short Sleeved T-Shirt Regular Fit Black M;THS1S1C1;1032445341;pieces;;;;;M
+                                           ;THS1S1C1L;The North Face Men Simple Dome Short Sleeved T-Shirt Regular Fit Black L;THS1S2C2;1032445342;pieces;;;;;L
+                                           ;THS1S2C1M;The North Face Men Simple Dome Short Sleeved T-Shirt Regular Fit Red M;THS1S1C1;1032445343;pieces;;;;;M
+                                           ;THS1S2C2L;The North Face Men Simple Dome Short Sleeved T-Shirt Regular Fit Red L;THS1S2C2;1032445344;pieces;;;;;L
+                                           ;THS2S1C1M;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Regular Fit Black M;THS1S1C1;1032445361;pieces;;;;;M
+                                           ;THS2S1C1L;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Slim Fit Black L;THS1S2C2;1032445362;pieces;;;;;L
+                                           ;THS2S2C1M;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Regular Fit Black M;THS1S1C1;1032445363;pieces;;;;;M
+                                           ;THS2S2C2L;Under Armour Men's Ua Tech Ss Tee Short Sleeve Short-Sleeve Shirt Slim Fit Red L;THS1S2C2;1032445364;pieces;;;;;L
+                                           ;JK1S1C1S;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson Brown S;JK1S1;1032446344;pieces;;;;;S
+                                           ;JK1S1C2XL;Berghaus Men's Kamloops Hooded Fleece Jacket Blouson Blue XL;JK1S1;1032446353;pieces;;;;;XL
+                                           ;JK2S1C1S;Craghoppers Women's Emley Jacket Parka Grey S;JK2S1;1032446362;pieces;;DutyApparelSizeVariantProduct;;;S
+                                           ;JK2S1C2M;Craghoppers Women's Emley Jacket Parka Yellow M;JK2S1;1032446363;pieces;;DutyApparelSizeVariantProduct;;;M

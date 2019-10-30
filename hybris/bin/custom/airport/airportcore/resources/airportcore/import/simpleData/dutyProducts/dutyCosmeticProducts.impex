@@ -1,0 +1,35 @@
+$productCatalog=airportProductCatalog
+$productCatalogName=airport product catalog
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=source(code, $catalogVersion)[unique=true]
+$baseProduct=baseProduct(code, catalogVersion(catalog(id[default='$productCatalog']),version[default='Staged']))
+$approved=approvalstatus(code)[default='check']
+
+
+#Create Products
+INSERT_UPDATE DutyCosmeticProduct;code[unique=true];$catalogVersion;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;ean;genders(code);ageRange;name;
+                            ;F1;;pieces;Foundation;DutyCosmeticVariantProduct;;1022436212;FEMALE;15-50;L'Oréal Paris Foundation Accord Parfait Natural Effect with Hyaluronic Acid
+                            ;F2;;pieces;Foundation;DutyCosmeticVariantProduct;;1022436222;FEMALE;20-80;Max Factor Colour Adapt Foundation Oil Free
+                            ;F3;;pieces;Foundation;DutyCosmeticVariantProduct;;1022436232;FEMALE;30-75;L'Oreal Paris Infallible Matte Foundation
+                            ;C1;;pieces;Cream;DutyCosmeticVariantProduct;;1022436242;MALE;15-70;NIVEA Soft Moisturising Cream
+                            ;P1;;pieces;Perfume;DutyCosmeticVariantProduct;;1022436252;MALE;20-60;Paco Rabanne Invictus Natural Eau de Toilette
+                            ;MU1;;pieces;MakeUp;DutyCosmeticVariantProduct;;1022436262;FEMALE;15-70;Maybelline Mascara Lash Sensational
+
+
+
+# Create Variants
+INSERT_UPDATE DutyCosmeticVariantProduct;code[unique=true];name;$baseProduct;ean;unit(code);supercategories(code,$catalogVersion);varianttype(code);$approved;$catalogVersion;bodyApplication;ingredients;composition;color(code);fragrance;size
+                                        ;F1V1;L'Oréal Paris Foundation Accord Parfait Natural Effect with Hyaluronic Acid Liquid 300ML BEIGE;F1;1022436213;pieces;;;;;face; Aqua / Water, Dimethicone, Isododecane, Cyclohexasiloxane, Glycerin, Peg-10 Dimethicone, Methyl Methacrylate Crosspolymer, Butylene Glycol, Pentylene Glycol, Synthetic Fluorphlogopite, Disteardimonium Hectorite, Hydroxyethylpiperazine Ethane Sulfonic Acid, Cetyl Peg/Ppg-10/1 Dimethicone, Sodium Chloride, Polyglyceryl-4 Isostearate, Hexyl Laurate, Caprylyl Glycol, Phenoxyethanol, Disodium Stearoyl Glutamate, Tocopherol, Panthenol, Aluminum Hydroxide, Hydroxyethylure, Hydrated Silica, Methicone;liquid;BEIGE;;300ML
+                                        ;F1V2;L'Oréal Paris Foundation Accord Parfait Natural Effect with Hyaluronic Acid Liquid 250ML IVORY;F1;1022436214;pieces;;;;;face; Aqua / Water, Dimethicone, Isododecane, Cyclohexasiloxane, Glycerin, Peg-10 Dimethicone, Methyl Methacrylate Crosspolymer, Butylene Glycol, Pentylene Glycol, Synthetic Fluorphlogopite, Disteardimonium Hectorite, Hydroxyethylpiperazine Ethane Sulfonic Acid, Cetyl Peg/Ppg-10/1 Dimethicone, Sodium Chloride, Polyglyceryl-4 Isostearate, Hexyl Laurate, Caprylyl Glycol, Phenoxyethanol, Disodium Stearoyl Glutamate, Tocopherol, Panthenol, Aluminum Hydroxide, Hydroxyethylure, Hydrated Silica, Methicone;liquid;IVORY;;250ML
+                                        ;F2V1;Max Factor Colour Adapt Foundation Oil Free Bare Minerals 150ML Natural;F2;1022436223;pieces;;;;;face; Cyclomethicone, Aqua, Glycerin, Titanium Dioxide, Dimethicone Crosspolymer, Mica, Dimethicone,Benzyl Alcohol, Ethylparaben, Disodium EDTA, Methylparaben, Propylparaben;bare minerals;NATURAL;;150ML
+                                        ;F2V2;Max Factor Colour Adapt Foundation Oil Free Liquid 250ML Bronze;F2;1022436224;pieces;;;;;face; Cyclomethicone, Aqua, Glycerin, Titanium Dioxide, Dimethicone Crosspolymer, Mica, Dimethicone,Benzyl Alcohol, Ethylparaben, Disodium EDTA, Methylparaben, Propylparaben;liquid;BRONZE;;250ML
+                                        ;F3V1;L'Oreal Paris Infallible Matte Foundation 100g Bronze;F3;1022436233;pieces;;;;;face; Cyclomethicone, Aqua, Glycerin, Titanium Dioxide;powder;BRONZE;;100g
+                                        ;F3V2;L'Oreal Paris Infallible Matte Foundation 100ML Pink;F3;1022436234;pieces;;;;;face; Cyclomethicone, Aqua, Glycerin, Titanium Dioxide;liquid;PINK;;100ML
+                                        ;C1V1;NIVEA Soft Moisturising Cream Hands Application 75ML;C1;1022436243;pieces;;;;;hands; Aqua,Glycerin,Paraffinum,Liquidum,Myristyl Alcohol,Butylene Glycol,Alcohol Denat,Stearic Acid,Myristyl Myristate;liquid;WHITE;;75ML
+                                        ;C1V2;FNIVEA Soft Moisturising Cream Body Application 100ML;C1;1022436244;pieces;;;;;hands; Aqua,Glycerin,Paraffinum,Liquidum,Myristyl Alcohol,Butylene Glycol,Alcohol Denat,Stearic Acid,Myristyl Myristate;liquid;WHITE;;100ML
+                                        ;P1V1;Paco Rabanne Invictus Natural Eau de Toilette 100ML;P1;1022436253;pieces;;;;;body;ALCOHOL DENAT., PARFUM (FRAGRANCE), AQUA (WATER), BENZYL SALICYLATE, LIMONENE, ETHYLHEXYL METHOXYCINNAMATE, LINALOOL, COUMARIN, BUTYLPHENYL METHYLPROPIONAL, CITRONELLOL, GERANIOL,liquid;;;;100ML;
+                                        ;P1V2;Paco Rabanne Invictus Natural Eau de Toilette 150ML;P1;1022436254;pieces;;;;;body;ALCOHOL DENAT., PARFUM (FRAGRANCE), AQUA (WATER), BENZYL SALICYLATE, LIMONENE, ETHYLHEXYL METHOXYCINNAMATE, LINALOOL, COUMARIN, BUTYLPHENYL METHYLPROPIONAL, CITRONELLOL, GERANIOL,liquid;;;;150ML;
+                                        ;MU1V1;Maybelline Mascara Lash Sensational Black 10ML ;MU1;1022436263;pieces;;;;;eyes;Aqua / Water,Propylene Glycol,Styrene/Acrylates/Ammonium Methacrylate Copolymer ,Polyurethane-35,Cera Alba / Beeswax ,Synthetic Fluorphlogopite,Glyceryl Stearate,Cetyl Alcohol,PEG-200 Glyceryl Stearate,Ethylenediamine/Stearyl Dimer Dilinoleate Copolymer ,Copernicia Cerifera Cera / Carnauba Wax,Stearic Acid,Palmitic Acid,Ethylene/VA Copolymer ,Alcohol Denat.;liquid;BLACK;10ML
+                                        ;MU1V2;Maybelline Mascara Lash Sensational Brown 10ML ;MU1;1022436264;pieces;;;;;eyes;Aqua / Water,Propylene Glycol,Styrene/Acrylates/Ammonium Methacrylate Copolymer ,Polyurethane-35,Cera Alba / Beeswax ,Synthetic Fluorphlogopite,Glyceryl Stearate,Cetyl Alcohol,PEG-200 Glyceryl Stearate,Ethylenediamine/Stearyl Dimer Dilinoleate Copolymer ,Copernicia Cerifera Cera / Carnauba Wax,Stearic Acid,Palmitic Acid,Ethylene/VA Copolymer ,Alcohol Denat.;liquid;BROWN;10ML
+
